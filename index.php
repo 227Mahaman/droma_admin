@@ -104,7 +104,23 @@ if (isset($_SESSION['user'])) {
             }
             require_once("view/tarifView.php");
         } elseif ($action == 'agence') {//View Agence
-            
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Tarif
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'agence', 'id_agence', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=agence');
+                    }
+                }
+            } else { // Ajout Tarif
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $agence = new agence($data);
+                    $res = insert($agence);
+
+                    $_SESSION['messages'] = $res;
+                }
+            }
             require_once("view/agenceView.php");
         } elseif ($action == 'mailProjet') {//View Mail/Compte aux projets
             if(!empty($_POST)){
