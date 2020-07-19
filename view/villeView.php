@@ -1,27 +1,73 @@
-<?php 
-    $title = "regions";
-    ob_start();
+<?php
+$title = "Gestion des villes";
+if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+  $title = "Modifier la ville";
+  $datas = Manager::getData("ville", "id_ville", $_GET['modif'])['data'];
+}
+ob_start();
 ?>
-    <div class="row">
-    <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title"><?=$title ?></h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" method="post">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="nom_region">Nom de la region</label>
-                  <input type="text" required class="form-control" id="nom_region" name="nom_region" placeholder="region">
-                </div>
-              </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Valider</button>
-                <p></p>
-                <?php 
+<div class="row">
+  <div class="col-md-12">
+    <!-- general form elements -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title"><?= $title ?></h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form" method="post" enctype="multipart/form-data">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="intitule">Intitulé</label>
+            <input type="text" required class="form-control" id="intitule" name="intitule" value="<?= (!empty($_GET['modif'])) ? $datas['intitule'] : "" ?>" placeholder="Veuillez entrer l'intitulé de la ville">
+          </div>
+          <div class="form-group">
+            <label>Pays</label>
+            <select class="form-control" id="pays" name="pays">
+              <?php
+              $pays = new pays();
+              $data = Manager::getDatas($pays)->all();
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+
+
+              ?>
+                  <option <?= (!empty($_GET['modif']) && $datas['pays']==$value['id_pays']) ? "selected" : "" ?> value="<?= $value['id_pays'] ?>"><?= $value['nom'] ?></option>
+              <?php
+                }
+              } else {
+                Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              }
+              ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tarif</label>
+            <select class="form-control" id="tarif" name="tarif">
+              <?php
+              $tarif = new tarif();
+              $data = Manager::getDatas($tarif)->all();
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+
+
+              ?>
+                  <option <?= (!empty($_GET['modif']) && $datas['tarif']==$value['id_tarif']) ? "selected" : "" ?> value="<?= $value['id_tarif'] ?>"><?= $value['valeur'] ?></option>
+              <?php
+                }
+              } else {
+                Manager::messages('Aucune donnée trouvé', 'alert-warning');
+              }
+              ?>
+            </select>
+          </div>
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+          <button type="submit" class="btn btn-primary">Valider</button>
+          <p></p>
+          <?php 
                 if (!empty($_SESSION['messages'])) {
                   if ($_SESSION['messages']['code']==1) {
                     echo Manager::messages($_SESSION['messages']['message'], 'alert-success');
@@ -30,12 +76,11 @@
                   }
                 }
               ?>
-              </div>
-            </form>
-          </div>
+        </div>
+      </form>
     </div>
-
-    <div class="col-md-6">
+  </div>
+  <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title"><?=$title ?></h3>
@@ -44,21 +89,26 @@
             <div class="box-body">
               <table class="table table-bordered">
                 <tbody><tr>
-                  <th>Type des agents</th>
+                  <th>Ville</th>
+                  <th>Pays</th>
+                  <th>Tarif</th>
                   <th>Action</th>
                 </tr>
                 <?php 
-                $region = new region();
-                $data = Manager::getDatas($region)->all();
-                  if (is_array($data) || is_object($data)) {
+                  $ville = new ville();
+                  $data = Manager::getDatas($ville)->all();
+                  //print_r($data);
+                  if ((is_array($data) || is_object($data)) && empty($data['message'])) {
                     foreach ($data as $value) {
                       
                    
                 ?>
                 <tr>
-                  <td><?= $value['nom_region'] ?></td>
+                  <td><?= $value['intitule'] ?></td>
+                  <td><?= Manager::getDatas(new pays())->getId_pays($value['pays'])->getNom() ?></td>
+                  <td><?= Manager::getDatas(new tarif())->getId_tarif($value['tarif'])->getValeur() ?></td>
                   <td>
-                    <a class="btn btn-primary">
+                    <a href="index.php?action=ville&modif=<?= $value['id_ville'] ?>" class="btn btn-primary">
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -78,8 +128,8 @@
             </div>
           </div>
       </div>
-    </div>
-<?php 
-    $content = ob_get_clean();
-    require('template.php');
+</div>
+<?php
+$content = ob_get_clean();
+require('template.php');
 ?>

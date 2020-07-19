@@ -65,10 +65,29 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/paysView.php");
-        } elseif ($action == 'listeProjet') {//View liste des projets
+        } elseif ($action == 'ville') {//View ville
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une Ville
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'ville', 'id_ville', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=ville');
+                    }
+                }
+            } else { // Ajout Ville
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $ville = new ville($data);
+                    $res = insert($ville);
+
+                    $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/villeView.php");
+        } elseif ($action == 'agence') {//View Agence
             
-            require_once("view/listeProjetView.php");
-        }elseif ($action == 'mailProjet') {//View Mail/Compte aux projets
+            require_once("view/agenceView.php");
+        } elseif ($action == 'mailProjet') {//View Mail/Compte aux projets
             if(!empty($_POST)){
                 //var_dump($_POST);die;
                 extract($_POST);
