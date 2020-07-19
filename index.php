@@ -177,36 +177,14 @@ if (isset($_SESSION['user'])) {
                     }
 
                 }
-            } else {
-                // if (!empty($_POST) && !empty($_FILES)) {
-                //     $data = $_POST;
-                //     $file = new Files();
-                //     var_dump($file->uploadFilePicture($_FILES['files']));
-                //     die;
-                //     $data['files'] = $_FILES['files'];
-                //     $res = EmergencyManager::addEmergency($data);
-                //     //Manager::showError($data);
-                //     if ($res != 1) {
-                //         $_SESSION['messages'] = $res;
-                //     } else {
-                //         header('Location: index.php?action=showEmergency');
-                //     }
-                // }
+            } else {//Ajout User
                 if (!empty($_POST) && !empty($_FILES)) {
                     $data = $_POST;
                     $files = new File();
                     $data['photo'] = $files->uploadFilePicture($_FILES['profile_picture']);
-
-                    // var_dump($data); 
                     $users = new users($data);
-                    //var_dump($users); die;
                     $res = insert($users);
-                    //$res = addData($data, 'roles');
-
-                    //if ($res['code'] != 1) {
                     $_SESSION['messages'] = $res;
-                    // }
-
                 }
             }
 
