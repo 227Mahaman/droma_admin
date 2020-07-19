@@ -30,38 +30,14 @@ ob_start();
             <label for="last_name">Prénom</label>
             <input value="<?= (is_array($datas) || is_object($datas))? $datas['last_name'] : "" ?>" type="text" required class="form-control" id="last_name" name="last_name" placeholder="Veuillez entrer le prénom de l'utilisateur">
           </div>
-          <!-- <div class="form-group">
-                  <label for="matricule">Matricule</label>
-                  <input type="tel" required class="form-control" id="matricule" name="matricule" placeholder="Veuillez entrer le matricule">
-                </div> -->
+          <div class="form-group">
+            <label for="matricule">Matricule</label>
+            <input type="tel" required class="form-control" id="matricule" name="matricule" placeholder="Veuillez entrer le matricule" value="<?= (!empty($_GET['modif'])) ? $datas['matricule'] : "" ?>">
+          </div>
           <div class="form-group">
             <label for="phone_number">N° de téléphone</label>
             <input value="<?= (is_array($datas) || is_object($datas))? $datas['phone_number'] : "" ?>" type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Veuillez entrer le N° de téléphone de l'utilisateur">
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input value="<?= (is_array($datas) || is_object($datas))? $datas['email'] : "" ?>" type="email" class="form-control" id="email" name="email" placeholder="Veuillez entrer l'adresse mail">
-          </div>
-          <!-- <div class="form-group">
-                  <label>Centre de sécours</label>
-                  <select class="form-control" id="casern" name="casern">
-                  <?php
-                  //$data = Manager::getData('rescue_center')['data'];
-                  //Manager::showError($data);
-                  // if (is_array($data) || is_object($data)) {
-                  //   foreach ($data as $value) {
-
-
-                  ?>
-                <option value="<?= $value['id'] ?>"><?= $value['label'] ?></option>
-                <?php
-                //  }
-                // }else {
-                //    Manager::messages('Aucune donnée trouvé', 'alert-warning');
-                // // }
-                ?>
-              </select>
-              </div> -->
           <div class="form-group">
             <label>Profile</label>
             <select class="form-control" id="type_agent" name="type_agent">

@@ -1,9 +1,9 @@
 <?php
 include_once('model/class/RoleManager.php');
 include_once('model/class/UserManager.php');
-//include_once('model/class/EmergencyManager.php');
+include_once('model/class/EmergencyManager.php');
 include_once('model/class/MenuManager.php');
-//include_once('model/class/Files.php');
+include_once('model/class/Files.php');
 include_once('model/database/module.php');
 include_once('model/database/roles.php');
 include_once('model/database/actions.php');

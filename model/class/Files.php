@@ -1,6 +1,6 @@
 <?php
 require_once("Manager.php");
-require_once("model/global.php");
+//require_once("model/global.php");
 
 class file
 {
