@@ -17,3 +17,13 @@ INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
 (8, 1, 8),
 (9, 1, 9),
 (10, 1, 10);
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+(11, 'Media', 'fa fa-upload', 'Le Module concernant le post des media', NULL, NULL),
+(12, 'Ajouter un média', NULL, 'Ajout des medias', 'addMedia', 11),
+(13, 'Liste des médias', NULL, 'Listing de nos medias', 'lstMedia', 11);
+
+INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
+(11, 1, 11),
+(12, 1, 12),
+(13, 1, 13);

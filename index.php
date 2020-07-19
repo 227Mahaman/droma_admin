@@ -104,7 +104,7 @@ if (isset($_SESSION['user'])) {
             }
             require_once("view/tarifView.php");
         } elseif ($action == 'agence') {//View Agence
-            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Tarif
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Agence
                 if (!empty($_POST)) {
                     $data = $_POST;
                     $res = Manager::updateData($data, 'agence', 'id_agence', $_GET['modif']);
@@ -112,7 +112,7 @@ if (isset($_SESSION['user'])) {
                         header('Location: index.php?action=agence');
                     }
                 }
-            } else { // Ajout Tarif
+            } else { // Ajout Agence
                 if (!empty($_POST)) {
                     $data = $_POST;
                     $agence = new agence($data);
@@ -122,33 +122,29 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/agenceView.php");
-        } elseif ($action == 'mailProjet') {//View Mail/Compte aux projets
-            if(!empty($_POST)){
-                //var_dump($_POST);die;
-                extract($_POST);
-                
-                //$_SESSION['equipe'] = $equipe;
-                //$data = Manager::getData('projet', 'equipe', $equipe)['data'];
-                if(!empty($compte)){//Création de compte
-                    $data = Manager::getData('equipe', 'id_equipe', $compte)['data'];
-                    $pass = md5($data['nom_equipe']);
-                    // var_dump($compte);
-                    // die();
-                    $pass = Manager::updateDataSingle('password_equipe', $pass, 'equipe', 'id_equipe', $data['id_equipe']);
-                } else{//Send mail to candidat
-                    //$_SESSION[''] = $equipe;
-                    include_once("model/mail.php");
+        } elseif ($action == 'addMedia') {//View Media
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Media
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'post', 'id_post', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstMedia');
+                    }
+                }
+            } else { // Ajout Media
+                if (!empty($_POST) && !empty($_FILES)) {
+                    $data = $_POST;
+                    $files = new File();
+                    $data['file'] = $files->uploadFilePicture($_FILES['file']);
+                    $data['user_create'] = $_SESSION['user']['id'];
+                    $post = new post($data);
+                    $res = insert($post);
+                    $_SESSION['messages'] = $res;
                 }
             }
-            require_once("view/mailProjetView.php");
-        } elseif ($action == 'listeCandidat') {//View Liste des candidats par projet
-            require_once("view/listeCandidatView.php");
-        } elseif ($action == 'inscription') {//View Lancement inscription
-            require_once("view/inscriptionView.php");
-        } elseif ($action == 'attributionCoach') {//Attribution de Coach aux projets
-            require_once("view/attributionCoachView.php");
-        } elseif ($action == 'coach') {
-            require_once("view/attributionCoachProjetView.php");
+            require_once("view/addMediaView.php");
+        } elseif ($action == 'lstMedia') {
+            require_once("view/lstMediaView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;
@@ -209,13 +205,6 @@ if (isset($_SESSION['user'])) {
         } elseif ($action == 'showEmergency') {
 
             require_once("view/showEmergencyGestView.php");
-        } elseif ($action == 'juryProject' && !empty($_GET['jury'])) {
-            //Manager::showError($_FILES);
-            
-            require_once("view/juryProjectView.php");
-        } elseif ($action == 'voir-plan') {
-
-            require_once("view/showPlanView.php");
         } elseif ($action == 'showUser') {
 
             require_once("view/showUserView.php");
@@ -225,17 +214,7 @@ if (isset($_SESSION['user'])) {
             require_once("view/profileView.php");
         } elseif ($action == 'dashboard') {//View Dashboard
             require_once("view/dashboardView.php");
-        } elseif ($action == 'detailProjet') {//View Detail du Projet
-            require_once("view/detailProjetView.php");
-        } elseif ($action == 'detailProjetFinal') {//View Detail du Projet
-            require_once("view/detailProjetFinalView.php");
-        } elseif ($action == 'listesProjets') {//View listes des Projets
-            require_once("view/listesProjetsView.php");
-        } elseif ($action == 'listeEquipe') {//View listes des Equipes
-            require_once("view/listeEquipeView.php");
-        } elseif ($action == 'listeCoach') {//View listes des Coachs
-            require_once("view/listeCoachView.php");
-        }elseif ($action == 'exportProjet') {//View listes des Coachs
+        } elseif ($action == 'exportProjet') {//View listes des Coachs
             include_once('model/export_projet.php');
             //require_once("view/listeProjetView.php");
         }elseif ($action == 'exportToPdf') {//View listes des Coachs
