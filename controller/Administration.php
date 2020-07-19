@@ -9,10 +9,16 @@ include_once('model/database/roles.php');
 //include_once('model/database/region.php');
 include_once('model/database/users.php');
 include_once('model/database/type_agent.php');
-//include_once('model/database/files.php');
-//include_once('model/database/equipe.php');
-//include_once('model/database/projet.php');
-//include_once('model/database/candidat.php');
+include_once('model/database/files.php');
+include_once('model/database/agence.php');
+include_once('model/database/billet.php');
+include_once('model/database/module_role.php');
+include_once('model/database/news.php');
+include_once('model/database/pays.php');
+include_once('model/database/post.php');
+include_once('model/database/reservation.php');
+include_once('model/database/tarif.php');
+include_once('model/database/ville.php');
 
 function addData($data, $table)
 {
