@@ -46,9 +46,25 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/permissionView.php");
-        }  elseif ($action == 'noteProjetHack') {//Noter les projets présélectionnés
+        }  elseif ($action == 'pays') {//View Pays
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un PAYS
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'pays', 'id_pays', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=pays');
+                    }
+                }
+            } else { // Ajout Pays
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $pays = new pays($data);
+                    $res = insert($pays);
 
-            require_once("view/noterProjetHackathonView.php");
+                    $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/paysView.php");
         } elseif ($action == 'listeProjet') {//View liste des projets
             
             require_once("view/listeProjetView.php");
