@@ -52,7 +52,7 @@ ob_start();
 
 
               ?>
-                  <option <?= (!empty($_GET['modif']) && $datas['tarif']==$value['id_tarif']) ? "selected" : "" ?> value="<?= $value['id_tarif'] ?>"><?= $value['valeur'] ?></option>
+                  <option <?= (!empty($_GET['modif']) && $datas['tarif']==$value['id_tarif']) ? "selected" : "" ?> value="<?= $value['id_tarif'] ?>"><?= $value['code_tarif'] . ' - ' . $value['valeur']?> FCFA</option>
               <?php
                 }
               } else {
@@ -106,7 +106,7 @@ ob_start();
                 <tr>
                   <td><?= $value['intitule'] ?></td>
                   <td><?= Manager::getDatas(new pays())->getId_pays($value['pays'])->getNom() ?></td>
-                  <td><?= Manager::getDatas(new tarif())->getId_tarif($value['tarif'])->getValeur() ?></td>
+                  <td><?= Manager::getDatas(new tarif())->getId_tarif($value['tarif'])->getCode_tarif() . ' - ' . Manager::getDatas(new tarif())->getId_tarif($value['tarif'])->getValeur() ?> FCFA</td>
                   <td>
                     <a href="index.php?action=ville&modif=<?= $value['id_ville'] ?>" class="btn btn-primary">
                       <i class="fa fa-edit"></i>

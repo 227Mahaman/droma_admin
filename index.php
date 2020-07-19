@@ -84,6 +84,25 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/villeView.php");
+        } elseif ($action == 'tarif') {//View ville
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Tarif
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'tarif', 'id_tarif', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=tarif');
+                    }
+                }
+            } else { // Ajout Tarif
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $tarif = new tarif($data);
+                    $res = insert($tarif);
+
+                    $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/tarifView.php");
         } elseif ($action == 'agence') {//View Agence
             
             require_once("view/agenceView.php");

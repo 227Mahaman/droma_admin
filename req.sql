@@ -3,3 +3,5 @@ INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES (6, 1, 6);
 
 ALTER TABLE `module_role` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 ALTER TABLE `module` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE `tarif` CHANGE `code_tarif` `code_tarif` VARCHAR(100) NOT NULL;
