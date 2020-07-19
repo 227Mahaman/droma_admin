@@ -36,6 +36,8 @@ if (isset($_SESSION['user'])) {
         } elseif ($action == 'permission') {
             if (!empty($_POST)) {
                 $data = $_POST;
+                var_dump($data);
+                die();
                 $data['action_url'] = setActionUrl($data['name']);
                 $res = addData($data, 'actions');
 
@@ -44,46 +46,7 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/permissionView.php");
-        } elseif ($action == 'regional_group') {
-            if (!empty($_POST)) {
-                $data = $_POST;
-                $res = addData($data, 'regional_group');
-
-                if ($res != 1) {
-                    $_SESSION['messages'] = $res;
-                }
-            }
-            require_once("view/regionalGroupView.php");
-        } elseif ($action == 'compagnie') {
-            if (!empty($_POST)) {
-                $data = $_POST;
-                $res = addData($data, 'company');
-
-                if ($res != 1) {
-                    $_SESSION['messages'] = $res;
-                }
-            }
-            require_once("view/companyView.php");
-        } elseif ($action == 'rescue') {
-            if (!empty($_POST)) {
-                $data = $_POST;
-                $res = addData($data, 'rescue_center');
-
-                if ($res != 1) {
-                    $_SESSION['messages'] = $res;
-                }
-            }
-            require_once("view/rescueCenterView.php");
-        } elseif ($action == 'users' && !empty($_GET['role'])) {
-
-            require_once("view/listeOrganisateurView.php");
-        } elseif ($action == 'users') {
-
-            require_once("view/UsersView.php");
-        } elseif ($action == 'noteProjet') {//Noter tous les projets
-
-            require_once("view/noterProjetView.php");
-        } elseif ($action == 'noteProjetHack') {//Noter les projets présélectionnés
+        }  elseif ($action == 'noteProjetHack') {//Noter les projets présélectionnés
 
             require_once("view/noterProjetHackathonView.php");
         } elseif ($action == 'listeProjet') {//View liste des projets

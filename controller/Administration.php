@@ -6,7 +6,7 @@ include_once('model/class/MenuManager.php');
 //include_once('model/class/Files.php');
 include_once('model/database/module.php');
 include_once('model/database/roles.php');
-//include_once('model/database/region.php');
+include_once('model/database/actions.php');
 include_once('model/database/users.php');
 include_once('model/database/type_agent.php');
 include_once('model/database/files.php');

@@ -2,7 +2,7 @@ host = $(location).attr('hostname');
 protocol = $(location).attr('protocol');
 folder = '';
 if (host == 'localhost') {
-    folder = '/coronackathon_admin';
+    folder = '/dromadaire';
 } else {
     folder = '/admin';
 }
