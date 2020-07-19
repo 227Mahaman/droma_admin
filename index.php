@@ -143,8 +143,10 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/addMediaView.php");
-        } elseif ($action == 'lstMedia') {
+        } elseif ($action == 'lstMedia') {// View liste des media
             require_once("view/lstMediaView.php");
+        } elseif ($action == 'abonne') {//View des mails Abonné
+            require_once("view/lstAbonneView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;

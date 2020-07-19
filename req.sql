@@ -27,3 +27,13 @@ INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
 (11, 1, 11),
 (12, 1, 12),
 (13, 1, 13);
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+(14, 'NewsLetter', 'fa fa-info', 'Abonnement pour recevoir les notif', NULL, NULL),
+(15, 'Abonné', NULL, 'Abonnement à nos notifications', 'abonne', 14),
+(16, 'Envoi mail', NULL, 'Envoyer des mails aux abonnés', 'envoiMail', 14);
+
+INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
+(14, 1, 14),
+(15, 1, 15),
+(16, 1, 16);
