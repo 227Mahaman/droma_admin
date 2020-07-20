@@ -107,6 +107,8 @@ if (isset($_SESSION['user'])) {
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Agence
                 if (!empty($_POST)) {
                     $data = $_POST;
+                    $files = new File();
+                    $data['file'] = $files->uploadFilePicture($_FILES['file']);
                     $res = Manager::updateData($data, 'agence', 'id_agence', $_GET['modif']);
                     if ($res['code'] = 200) {
                         header('Location: index.php?action=agence');

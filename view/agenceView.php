@@ -2,7 +2,7 @@
     $title = "Agence";
     if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
       $title = "Modification de l'Agence";
-      $datas = Manager::getData("agence", "id_agence", $rif_GET['modif'])['data'];
+      $datas = Manager::getData("agence", "id_agence", $_GET['modif'])['data'];
       $src = Manager::getData("files", "id", $datas['file'])['data']['file_url'];
     }
     ob_start();
