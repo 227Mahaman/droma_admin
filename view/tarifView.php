@@ -2,7 +2,7 @@
     $title = "Tarif";
     if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
       $title = "Modification du Tarif";
-      $datas = Manager::getData("tarif", "id_tarif", $rif_GET['modif'])['data'];
+      $datas = Manager::getData("tarif", "id_tarif", $_GET['modif'])['data'];
     }
     ob_start();
 ?>

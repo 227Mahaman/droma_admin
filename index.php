@@ -115,6 +115,8 @@ if (isset($_SESSION['user'])) {
             } else { // Ajout Agence
                 if (!empty($_POST)) {
                     $data = $_POST;
+                    $files = new File();
+                    $data['file'] = $files->uploadFilePicture($_FILES['file']);
                     $agence = new agence($data);
                     $res = insert($agence);
 

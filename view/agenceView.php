@@ -3,6 +3,7 @@
     if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
       $title = "Modification de l'Agence";
       $datas = Manager::getData("agence", "id_agence", $rif_GET['modif'])['data'];
+      $src = Manager::getData("files", "id", $datas['file'])['data']['file_url'];
     }
     ob_start();
 ?>
@@ -15,7 +16,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post">
+            <form role="form" method="post" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="code_agence">Code</label>
@@ -26,25 +27,30 @@
                   <input type="text" required class="form-control" id="nom_agence" name="nom_agence" value="<?= (!empty($_GET['modif'])) ? $datas['nom_agence'] : "" ?>" placeholder="Nom de l'agence">
                 </div>
                 <div class="form-group">
-                <label>Ville</label>
-                <select class="form-control" id="ville" name="ville">
-                  <?php
-                  $ville = new ville();
-                  $data = Manager::getDatas($ville)->all();
-                  if (is_array($data) || is_object($data)) {
-                    foreach ($data as $value) {
+                  <label>Ville</label>
+                  <select class="form-control" id="ville" name="ville">
+                    <?php
+                    $ville = new ville();
+                    $data = Manager::getDatas($ville)->all();
+                    if (is_array($data) || is_object($data)) {
+                      foreach ($data as $value) {
 
 
-                  ?>
-                      <option <?= (!empty($_GET['modif']) && $datas['ville']==$value['id_ville']) ? "selected" : "" ?> value="<?= $value['id_ville'] ?>"><?= $value['intitule'] ?></option>
-                  <?php
+                    ?>
+                        <option <?= (!empty($_GET['modif']) && $datas['ville']==$value['id_ville']) ? "selected" : "" ?> value="<?= $value['id_ville'] ?>"><?= $value['intitule'] ?></option>
+                    <?php
+                      }
+                    } else {
+                      Manager::messages('Aucune donnée trouvé', 'alert-warning');
                     }
-                  } else {
-                    Manager::messages('Aucune donnée trouvé', 'alert-warning');
-                  }
-                  ?>
-                </select>
-              </div>
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group" style="text-align: center;">
+                  <img src="<?= ((is_array($datas) || is_object($datas)) && !empty($src) ? $src : "http://via.placeholder.com/150x150") ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="">
+                  <!-- hidden file input to trigger with JQuery  -->
+                  <input type="file" name="file" id="profile_input" value="" style="display: none;">
+                </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Valider</button>
