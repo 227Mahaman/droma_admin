@@ -123,11 +123,9 @@ switch ($request_method) {
                     echo $table->getMultiplesRecords($sql, ['Oui'], true);
                 }
             } elseif ($url_request['property_1'] == "projects_by_date") {
-                $res = [];
-                $sql = "SELECT COUNT(*) as nb, date_post FROM projet WHERE DATE(date_post) = ?";
-                for ($i = 20200515; $i <= 20200529; $i++) {
-                    $res[$i] =  $table->getMultiplesRecords($sql, [$i]);
-                }
+                $sql = "SELECT code_tarif, valeur FROM tarif WHERE 1=?";
+                $res =  $table->getMultiplesRecords($sql, [1]);
+                
                 echo json_encode($res);
             } elseif ($url_request['property_1'] == "note_projet" && isset($_GET['projet'])) {
                 $sql = "SELECT * FROM note n, projet p WHERE n.projet = p.id_projet

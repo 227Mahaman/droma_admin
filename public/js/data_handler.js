@@ -1335,30 +1335,37 @@ function changeEtat(checkbox) {
     }
 }
 
-getProjectReports();
 
-function getProjectReports() {
+
+getRate();
+
+function getRate() {
     moment.locale('fr');
-    $projet = getDatas("custom", "projects_by_date");
-    $day = [];
-    $count = [];
-    $projet.done(function (data) {
+    $rate = getDatas("custom", "projects_by_date");
+    console.log($rate);
+    
+    $price = [];
+    $cities = [];
+    $rate.done(function (data) {
         console.log(data, "report");
         $.each(data, function (i, v) {
-            console.log(moment(i).format('DD MMMM'), v[0].nb);
-            $day.push(moment(i).format('DD MMMM'));
-            $count.push(v[0].nb);
+            console.log(v.code_tarif, i, "trr");
+            
+            // $price.push(v[]);
+            $cities.push(v.code_tarif);
+            $price.push(v.valeur);
         });
-
+        console.log($cities, $price);
+        
         var chartdata = {
-            labels: $day,
+            labels: $cities,
             datasets: [{
-                    label: 'Projets par date',
+                    label: 'Tarif',
                     backgroundColor: '#49e2ff',
                     borderColor: '#46d5f1',
                     hoverBackgroundColor: '#CCCCCC',
                     hoverBorderColor: '#666666',
-                    data: $count
+                    data: $price
                 }
 
             ]
