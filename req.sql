@@ -11,3 +11,4 @@ ALTER TABLE `billet` ADD `depart` INT NULL AFTER `bus`, ADD `destination` INT NU
 -- MAJ komche
 ALTER TABLE `tarif` ADD FOREIGN KEY (`vdepart`) REFERENCES `ville`(`id_ville`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `tarif` ADD FOREIGN KEY (`vdestination`) REFERENCES `ville`(`id_ville`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `agence` ADD `localisation` VARCHAR(300) NOT NULL AFTER `nom_agence`;

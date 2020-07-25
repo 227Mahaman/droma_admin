@@ -1,5 +1,6 @@
 <?php 
     $title = "Agence";
+    $datas = "";
     if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
       $title = "Modification de l'Agence";
       $datas = Manager::getData("agence", "id_agence", $_GET['modif'])['data'];
@@ -27,6 +28,10 @@
                   <input type="text" required class="form-control" id="nom_agence" name="nom_agence" value="<?= (!empty($_GET['modif'])) ? $datas['nom_agence'] : "" ?>" placeholder="Nom de l'agence">
                 </div>
                 <div class="form-group">
+                  <label for="localisation">Localisation</label>
+                  <input type="text" required class="form-control" id="localisation" name="localisation" value="<?= (!empty($_GET['modif'])) ? $datas['nom_agence'] : "" ?>" placeholder="Nom de l'agence">
+                </div>
+                <div class="form-group">
                   <label>Ville</label>
                   <select class="form-control" id="ville" name="ville">
                     <?php
@@ -47,7 +52,7 @@
                   </select>
                 </div>
                 <div class="form-group" style="text-align: center;">
-                  <img src="<?= ((is_array($datas) || is_object($datas)) && !empty($src) ? $src : "http://via.placeholder.com/150x150") ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="">
+                  <img src="<?= ((is_array($datas) || is_object($datas)) && !empty($src) ? $src : "public/img/150x150.png") ?>" id="profile_img" style="height: 100px; border-radius: 50%" alt="">
                   <!-- hidden file input to trigger with JQuery  -->
                   <input type="file" name="file" id="profile_input" value="" style="display: none;">
                 </div>
