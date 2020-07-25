@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                   <label for="localisation">Localisation</label>
-                  <input type="text" required class="form-control" id="localisation" name="localisation" value="<?= (!empty($_GET['modif'])) ? $datas['nom_agence'] : "" ?>" placeholder="Nom de l'agence">
+                  <input type="text" required class="form-control" id="localisation" name="localisation" value="<?= (!empty($_GET['modif'])) ? $datas['nom_agence'] : "" ?>" placeholder="Le de google map de l'agence">
                 </div>
                 <div class="form-group">
                   <label>Ville</label>
