@@ -102,7 +102,15 @@
                 $data = Manager::getDatas($tarif)->all();
                   if (is_array($data) || is_object($data)) {
                     foreach ($data as $value) {
-                      
+                      if (empty($value['vdepart']) || empty($value['vdestination'])) {
+                        $sql = "UPDATE tarif SET vdepart=?, vdestination =? WHERE code_tarif=?";
+                        $sql_ = "SELECT id_ville FROM ville WHERE intitule LIKE ?";
+                        $villess = explode("_", $value['code_tarif']);
+                        $dep = Manager::getSingleRecord($sql_, [$villess[0]]);
+                        $des = Manager::getSingleRecord($sql_, [$villess[1]]);
+                        // var_dump( (int)$des['id_ville']); Manager::showError($value['code_tarif']);
+                        Manager::modifyRecord($sql, [(int)$dep['id_ville'], (int)$des['id_ville'], $value['code_tarif']]);
+                      }
                    
                 ?>
                 <tr>
