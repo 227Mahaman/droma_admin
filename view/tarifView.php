@@ -25,6 +25,46 @@
                   <label for="valeur">Valeur</label>
                   <input type="text" required class="form-control" id="valeur" name="valeur" value="<?= (!empty($_GET['modif'])) ? $datas['valeur'] : "" ?>" placeholder="valeur">
                 </div>
+                <div class="form-group">
+                  <label>Ville de Départ</label>
+                  <select class="form-control" id="vdepart" name="vdepart">
+                    <?php
+                    $ville = new ville();
+                    $data = Manager::getDatas($ville)->all();
+                    if (is_array($data) || is_object($data)) {
+                      foreach ($data as $value) {
+
+
+                    ?>
+                        <option <?= (!empty($_GET['modif']) && $datas['vdepart']==$value['id_ville']) ? "selected" : "" ?> value="<?= $value['id_ville'] ?>"><?= $value['intitule'] ?></option>
+                    <?php
+                      }
+                    } else {
+                      Manager::messages('Aucune donnée trouvé', 'alert-warning');
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Ville de Destination</label>
+                  <select class="form-control" id="vdestination" name="vdestination">
+                    <?php
+                    $ville = new ville();
+                    $data = Manager::getDatas($ville)->all();
+                    if (is_array($data) || is_object($data)) {
+                      foreach ($data as $value) {
+
+
+                    ?>
+                        <option <?= (!empty($_GET['modif']) && $datas['vdestination']==$value['id_ville']) ? "selected" : "" ?> value="<?= $value['id_ville'] ?>"><?= $value['intitule'] ?></option>
+                    <?php
+                      }
+                    } else {
+                      Manager::messages('Aucune donnée trouvé', 'alert-warning');
+                    }
+                    ?>
+                  </select>
+                </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Valider</button>
