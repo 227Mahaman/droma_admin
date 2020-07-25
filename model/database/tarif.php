@@ -3,7 +3,9 @@
 class tarif {
 	 public $id_tarif;
 	 public $code_tarif;
-	 public $valeur;
+     public $valeur;
+     public $vdepart;
+     public $vdestination;
 	 public $tarif=array();
 
 
@@ -18,11 +20,13 @@ class tarif {
                     return $this->tarif;
                 }
 
-                public function role($id_tarif, $code_tarif, $valeur)
+                public function role($id_tarif, $code_tarif, $valeur, $vdepart, $vdestination)
                     {
                         $this->id_tarif = $id_tarif;
 $this->code_tarif = $code_tarif;
 $this->valeur = $valeur;
+$this->vdepart = $vdepart;
+$this->vdestination = $vdestination;
 
                     }
                 
@@ -44,6 +48,8 @@ $d=$data[0];
 $this->setId_tarif($d['id_tarif']);
 $this->setCode_tarif($d['code_tarif']);
 $this->setValeur($d['valeur']);
+$this->setVdepart($d['vdepart']);
+$this->setVdestination($d['vdestination']);
 $this->tarif =$data; 
  return $this;
                                 }
@@ -69,6 +75,7 @@ $d=$data[0];
 $this->setId_tarif($d['id_tarif']);
 $this->setCode_tarif($d['code_tarif']);
 $this->setValeur($d['valeur']);
+$this->setVdepart($d['vdepart']);
 $this->tarif =$data; 
  return $this;
                                 }
@@ -94,6 +101,8 @@ $d=$data[0];
 $this->setId_tarif($d['id_tarif']);
 $this->setCode_tarif($d['code_tarif']);
 $this->setValeur($d['valeur']);
+$this->setVdepart($d['vdepart']);
+$this->setVdestination($d['vdestination']);
 $this->tarif =$data; 
  return $this;
                                 }
@@ -104,6 +113,61 @@ $this->tarif =$data;
                         
                     }
 
+                    /**
+                    * Get the value of vdepart
+                    */ 
+                    public function getVdepart($vdepart=null)
+                    {
+                        if ($vdepart != null && is_array($this->tarif) && count($this->tarif)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE vdepart = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$vdepart]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_tarif($d['id_tarif']);
+$this->setCode_tarif($d['code_tarif']);
+$this->setValeur($d['valeur']);
+$this->setVdepart($d['vdepart']);
+$this->setVdestination($d['vdestination']);
+$this->tarif =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->vdepart;
+                        }
+                        
+                    }
+
+                    /**
+                    * Get the value of vdestination
+                    */ 
+                    public function getVdestination($vdestination=null)
+                    {
+                        if ($vdestination != null && is_array($this->tarif) && count($this->tarif)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE vdestination = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$vdestination]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_tarif($d['id_tarif']);
+$this->setCode_tarif($d['code_tarif']);
+$this->setValeur($d['valeur']);
+$this->setVdepart($d['vdepart']);
+$this->setVdestination($d['vdestination']);
+$this->tarif =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->vdestination;
+                        }
+                        
+                    }
 
                     /**
                     * Set the value of id_tarif
@@ -135,6 +199,30 @@ $this->tarif =$data;
                    public function setValeur($valeur)
                    {
                     $this->valeur = $valeur;
+               
+                       return $this;
+                   }
+
+                    /**
+                    * Set the value of vdepart
+                    *
+                    * @return  self
+                    */ 
+                    public function setVdepart($vdepart)
+                    {
+                     $this->vdepart = $vdepart;
+                
+                        return $this;
+                    }
+
+                     /**
+                    * Set the value of vdestination
+                    *
+                    * @return  self
+                    */ 
+                   public function setVdestination($vdestination)
+                   {
+                    $this->vdestination = $vdestination;
                
                        return $this;
                    }

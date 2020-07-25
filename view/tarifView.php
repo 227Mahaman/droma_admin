@@ -94,6 +94,7 @@
                 <tbody><tr>
                   <th>Code</th>
                   <th>Valeur</th>
+                  <th>Départ-Destination</th>
                   <th>Action</th>
                 </tr>
                 <?php 
@@ -107,6 +108,7 @@
                 <tr>
                   <td><?= $value['code_tarif'] ?></td>
                   <td><?= $value['valeur'] ?> FCFA</td>
+                  <td><?= Manager::getDatas(new ville())->getId_ville($value['vdepart'])->getIntitule() . ' - ' . Manager::getDatas(new ville())->getId_ville($value['vdestination'])->getIntitule() ?></td>
                   <td>
                     <a href="index.php?action=tarif&modif=<?= $value['id_tarif'] ?>" class="btn btn-primary">
                       <i class="fa fa-edit"></i>
