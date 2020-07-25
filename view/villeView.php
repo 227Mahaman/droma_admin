@@ -41,26 +41,6 @@ ob_start();
               ?>
             </select>
           </div>
-          <div class="form-group">
-            <label>Tarif</label>
-            <select class="form-control" id="tarif" name="tarif">
-              <?php
-              $tarif = new tarif();
-              $data = Manager::getDatas($tarif)->all();
-              if (is_array($data) || is_object($data)) {
-                foreach ($data as $value) {
-
-
-              ?>
-                  <option <?= (!empty($_GET['modif']) && $datas['tarif']==$value['id_tarif']) ? "selected" : "" ?> value="<?= $value['id_tarif'] ?>"><?= $value['code_tarif'] . ' - ' . $value['valeur']?> FCFA</option>
-              <?php
-                }
-              } else {
-                Manager::messages('Aucune donnée trouvé', 'alert-warning');
-              }
-              ?>
-            </select>
-          </div>
         </div>
         <!-- /.box-body -->
 
@@ -91,7 +71,6 @@ ob_start();
                 <tbody><tr>
                   <th>Ville</th>
                   <th>Pays</th>
-                  <th>Tarif</th>
                   <th>Action</th>
                 </tr>
                 <?php 
@@ -106,7 +85,6 @@ ob_start();
                 <tr>
                   <td><?= $value['intitule'] ?></td>
                   <td><?= Manager::getDatas(new pays())->getId_pays($value['pays'])->getNom() ?></td>
-                  <td><?= Manager::getDatas(new tarif())->getId_tarif($value['tarif'])->getCode_tarif() . ' - ' . Manager::getDatas(new tarif())->getId_tarif($value['tarif'])->getValeur() ?> FCFA</td>
                   <td>
                     <a href="index.php?action=ville&modif=<?= $value['id_ville'] ?>" class="btn btn-primary">
                       <i class="fa fa-edit"></i>
