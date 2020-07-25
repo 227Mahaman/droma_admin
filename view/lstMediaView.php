@@ -31,7 +31,7 @@ ob_start();
                 if ($_SERVER["SERVER_NAME"] == 'localhost') {
                     $target = "http://localhost/dromadaire/";
                 } else {
-                    $target = "http://dromadaire/admin/";
+                    $target = "https://www.coronackathon.org/droma_admin/";
                 }
                 $i = 0;
                 $data = Manager::getData('post')['data'];
