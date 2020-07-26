@@ -149,6 +149,16 @@ if (isset($_SESSION['user'])) {
             require_once("view/addMediaView.php");
         } elseif ($action == 'lstMedia') {// View liste des media
             require_once("view/lstMediaView.php");
+        } elseif ($action == 'addAvis') {//View Avis
+            if (!empty($_POST) && !empty($_FILES)) {//Ajout Avis
+                $data = $_POST;
+                $files = new File();
+                $data['file'] = $files->uploadFilePicture($_FILES['file']);
+                $avis = new avis($data);
+                $res = insert($avis);
+                $_SESSION['messages'] = $res;
+            }
+            require_once("view/addAvisView.php");
         } elseif ($action == 'abonne') {//View des mails Abonné
             require_once("view/lstAbonneView.php");
         } elseif ($action == 'type') {

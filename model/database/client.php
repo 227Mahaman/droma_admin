@@ -24,7 +24,7 @@ class client {
                     return $this->client;
                 }
 
-                public function role($id_client, $nom, $prenom, $tel, $email, $fonction, $nationalite, $login, $pass)
+                public function role($id_client, $nom, $prenom, $tel, $email, $fonction, $nationalite)
                     {
                         $this->id_client = $id_client;
 $this->nom = $nom;
@@ -33,8 +33,6 @@ $this->tel = $tel;
 $this->email = $email;
 $this->fonction = $fonction;
 $this->nationalite = $nationalite;
-$this->login = $login;
-$this->pass = $pass;
 
                     }
                 
@@ -60,8 +58,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -91,8 +87,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -122,8 +116,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -153,8 +145,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -184,8 +174,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -215,8 +203,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -246,8 +232,6 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
 $this->client =$data; 
  return $this;
                                 }
@@ -257,70 +241,6 @@ $this->client =$data;
                         }
                         
                     }
-                    /**
-                    * Get the value of login
-                    */ 
-                    public function getLogin($login=null)
-                    {
-                        if ($login != null && is_array($this->client) && count($this->client)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE login = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$login]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId_client($d['id_client']);
-$this->setNom($d['nom']);
-$this->setPrenom($d['prenom']);
-$this->setTel($d['tel']);
-$this->setEmail($d['email']);
-$this->setFonction($d['fonction']);
-$this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
-$this->client =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->login;
-                        }
-                        
-                    }
-                    /**
-                    * Get the value of pass
-                    */ 
-                    public function getPass($pass=null)
-                    {
-                        if ($pass != null && is_array($this->client) && count($this->client)!=0) {
-                            $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE pass = ?";
-                            $req = Manager::bdd()->prepare($query);
-                            $req->execute([$pass]);
-                            $data = "";
-                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
-$d=$data[0];
-$this->setId_client($d['id_client']);
-$this->setNom($d['nom']);
-$this->setPrenom($d['prenom']);
-$this->setTel($d['tel']);
-$this->setEmail($d['email']);
-$this->setFonction($d['fonction']);
-$this->setNationalite($d['nationalite']);
-$this->setLogin($d['login']);
-$this->setPass($d['pass']);
-$this->client =$data; 
- return $this;
-                                }
-                            
-                        } else {
-                            return $this->pass;
-                        }
-                        
-                    }
-
-
                     /**
                     * Set the value of id_client
                     *
@@ -395,28 +315,6 @@ $this->client =$data;
                    public function setNationalite($nationalite)
                    {
                     $this->nationalite = $nationalite;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of login
-                    *
-                    * @return  self
-                    */ 
-                   public function setLogin($login)
-                   {
-                    $this->login = $login;
-               
-                       return $this;
-                   }
-                    /**
-                    * Set the value of pass
-                    *
-                    * @return  self
-                    */ 
-                   public function setPass($pass)
-                   {
-                    $this->pass = $pass;
                
                        return $this;
                    }
