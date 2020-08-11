@@ -114,7 +114,7 @@ if (isset($_SESSION['user'])) {
                         $data['file'] = $files->uploadFilePicture($_FILES['file']);
                     }
                     if (!empty($data['localisation'])) {
-                        $data['localisation'] = base64_encode($data['localisation']);
+                        $data['localisation'] = htmlentities($data['localisation']);
                     }
                     $res = Manager::updateData($data, 'agence', 'id_agence', $_GET['modif']);
                     if ($res['code'] = 200) {
@@ -127,7 +127,7 @@ if (isset($_SESSION['user'])) {
                     $files = new File();
                     $data['file'] = $files->uploadFilePicture($_FILES['file']);
                     if (!empty($data['localisation'])) {
-                        $data['localisation'] = base64_encode($data['localisation']);
+                        $data['localisation'] = htmlentities($data['localisation']);
                     }
                     $agence = new agence($data);
                     $res = insert($agence);
