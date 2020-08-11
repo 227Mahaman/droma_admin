@@ -107,8 +107,15 @@ if (isset($_SESSION['user'])) {
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Agence
                 if (!empty($_POST)) {
                     $data = $_POST;
-                    $files = new File();
-                    $data['file'] = $files->uploadFilePicture($_FILES['file']);
+                    // Manager::showError($_FILES);
+                    if (!empty($_FILES['file']['name'])) {
+                        
+                        $files = new File();
+                        $data['file'] = $files->uploadFilePicture($_FILES['file']);
+                    }
+                    if (!empty($data['localisation'])) {
+                        $data['localisation'] = htmlentities($data['localisation']);
+                    }
                     $res = Manager::updateData($data, 'agence', 'id_agence', $_GET['modif']);
                     if ($res['code'] = 200) {
                         header('Location: index.php?action=agence');
@@ -119,6 +126,9 @@ if (isset($_SESSION['user'])) {
                     $data = $_POST;
                     $files = new File();
                     $data['file'] = $files->uploadFilePicture($_FILES['file']);
+                    if (!empty($data['localisation'])) {
+                        $data['localisation'] = htmlentities($data['localisation']);
+                    }
                     $agence = new agence($data);
                     $res = insert($agence);
 
