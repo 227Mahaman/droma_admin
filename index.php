@@ -159,6 +159,8 @@ if (isset($_SESSION['user'])) {
             require_once("view/addMediaView.php");
         } elseif ($action == 'lstMedia') {// View liste des media
             require_once("view/lstMediaView.php");
+        } elseif ($action == 'consulter') {// View liste des media
+            require_once("view/reservationView.php");
         } elseif ($action == 'abonne') {//View des mails Abonné
             require_once("view/lstAbonneView.php");
         } elseif ($action == 'type') {
