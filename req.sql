@@ -40,3 +40,17 @@ INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_mo
 
 INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
 (17, 1, 17);
+
+####
+Création new TABLE
+##1
+CREATE TABLE `garages` (
+  `id_garage` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `garages`
+  ADD PRIMARY KEY (`id_garage`);
+ALTER TABLE `garages`
+  MODIFY `id_garage` int(11) NOT NULL AUTO_INCREMENT;
