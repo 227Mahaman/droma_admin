@@ -54,3 +54,15 @@ ALTER TABLE `garages`
   ADD PRIMARY KEY (`id_garage`);
 ALTER TABLE `garages`
   MODIFY `id_garage` int(11) NOT NULL AUTO_INCREMENT;
+##2
+CREATE TABLE `bus` (
+  `id_bus` int(11) NOT NULL,
+  `numero_plaque` varchar(255) NOT NULL,
+  `marque` varchar(255) NOT NULL,
+  `chauffeur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `bus`
+  ADD PRIMARY KEY (`id_bus`),
+  ADD KEY `chauffeur` (`chauffeur`);
+ALTER TABLE `bus`
+  MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT;
