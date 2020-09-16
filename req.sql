@@ -77,3 +77,15 @@ ALTER TABLE `employes`
   ADD PRIMARY KEY (`id_employe`);
 ALTER TABLE `employes`
   MODIFY `id_employe` int(11) NOT NULL AUTO_INCREMENT;
+##4
+CREATE TABLE `information` (
+  `id_information` int(11) NOT NULL,
+  `bp` int(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `tel1` varchar(10) NOT NULL,
+  `tel2` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `information`
+  ADD PRIMARY KEY (`id_information`);
+ALTER TABLE `information`
+  MODIFY `id_information` int(11) NOT NULL AUTO_INCREMENT;
