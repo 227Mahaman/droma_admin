@@ -66,3 +66,14 @@ ALTER TABLE `bus`
   ADD KEY `chauffeur` (`chauffeur`);
 ALTER TABLE `bus`
   MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT;
+##3
+CREATE TABLE `employes` (
+  `id_employe` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prénom` varchar(255) NOT NULL,
+  `poste` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `employes`
+  ADD PRIMARY KEY (`id_employe`);
+ALTER TABLE `employes`
+  MODIFY `id_employe` int(11) NOT NULL AUTO_INCREMENT;
