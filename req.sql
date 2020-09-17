@@ -16,3 +16,79 @@ ALTER TABLE `agence` ADD `localisation` VARCHAR(300) NOT NULL AFTER `nom_agence`
 INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
 (17, 'Réservation', '', 'gestion des réservations', NULL, NULL),
 (18, 'Consulter', NULL, 'consulter une réservation', 'consulter', 17);
+--26 juillet 2020
+CREATE TABLE `avis` (
+  `id_avis` int(11) NOT NULL,
+  `client` int(11) NOT NULL,
+  `txt` text NOT NULL,
+  `file` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `avis`
+  ADD PRIMARY KEY (`id_avis`),
+  ADD KEY `client` (`client`),
+  ADD KEY `file` (`file`);
+ALTER TABLE `avis`
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `avis`
+  ADD CONSTRAINT `avis_ibfk_1` FOREIGN KEY (`client`) REFERENCES `client` (`id_client`),
+  ADD CONSTRAINT `avis_ibfk_2` FOREIGN KEY (`file`) REFERENCES `files` (`id`);
+COMMIT;
+
+ALTER TABLE `avis` CHANGE `txt` `txt` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `file` `file` INT(11) NULL;
+ALTER TABLE `avis` ADD `url_v` VARCHAR(255) NULL AFTER `file`;
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+(17, 'Ajouter un tèmoignage', NULL, 'Ajouter des tèmoignages client', 'addAvis', 11);
+
+INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
+(17, 1, 17);
+
+####
+Création new TABLE
+##1
+CREATE TABLE `garages` (
+  `id_garage` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `garages`
+  ADD PRIMARY KEY (`id_garage`);
+ALTER TABLE `garages`
+  MODIFY `id_garage` int(11) NOT NULL AUTO_INCREMENT;
+##2
+CREATE TABLE `bus` (
+  `id_bus` int(11) NOT NULL,
+  `numero_plaque` varchar(255) NOT NULL,
+  `marque` varchar(255) NOT NULL,
+  `chauffeur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `bus`
+  ADD PRIMARY KEY (`id_bus`),
+  ADD KEY `chauffeur` (`chauffeur`);
+ALTER TABLE `bus`
+  MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT;
+##3
+CREATE TABLE `employes` (
+  `id_employe` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prénom` varchar(255) NOT NULL,
+  `poste` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `employes`
+  ADD PRIMARY KEY (`id_employe`);
+ALTER TABLE `employes`
+  MODIFY `id_employe` int(11) NOT NULL AUTO_INCREMENT;
+##4
+CREATE TABLE `information` (
+  `id_information` int(11) NOT NULL,
+  `bp` int(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `tel1` varchar(10) NOT NULL,
+  `tel2` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `information`
+  ADD PRIMARY KEY (`id_information`);
+ALTER TABLE `information`
+  MODIFY `id_information` int(11) NOT NULL AUTO_INCREMENT;
