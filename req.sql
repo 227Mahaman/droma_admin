@@ -44,9 +44,9 @@ INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_mo
 INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
 (17, 1, 17);
 
-####
+---
 Création new TABLE
-##1
+--1
 CREATE TABLE `garages` (
   `id_garage` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
@@ -57,7 +57,7 @@ ALTER TABLE `garages`
   ADD PRIMARY KEY (`id_garage`);
 ALTER TABLE `garages`
   MODIFY `id_garage` int(11) NOT NULL AUTO_INCREMENT;
-##2
+--2
 CREATE TABLE `bus` (
   `id_bus` int(11) NOT NULL,
   `numero_plaque` varchar(255) NOT NULL,
@@ -69,7 +69,7 @@ ALTER TABLE `bus`
   ADD KEY `chauffeur` (`chauffeur`);
 ALTER TABLE `bus`
   MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT;
-##3
+--3
 CREATE TABLE `employes` (
   `id_employe` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
@@ -80,7 +80,7 @@ ALTER TABLE `employes`
   ADD PRIMARY KEY (`id_employe`);
 ALTER TABLE `employes`
   MODIFY `id_employe` int(11) NOT NULL AUTO_INCREMENT;
-##4
+--4
 CREATE TABLE `information` (
   `id_information` int(11) NOT NULL,
   `bp` int(25) NOT NULL,
