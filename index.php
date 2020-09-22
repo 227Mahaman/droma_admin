@@ -173,6 +173,8 @@ if (isset($_SESSION['user'])) {
             require_once("view/reservationView.php");
         } elseif ($action == 'abonne') {//View des mails Abonné
             require_once("view/lstAbonneView.php");
+        } elseif ($action == 'siteweb') {//View Site Info
+            require_once("view/siteInfoView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;
