@@ -186,6 +186,16 @@ if (isset($_SESSION['user'])) {
             require_once("view/lstAbonneView.php");
         } elseif ($action == 'siteweb') {//View Site Info
             require_once("view/siteInfoView.php");
+        } elseif ($action == 'addBus') {//View Add Bus
+            if (!empty($_POST)) {//Ajout Bus
+                $data = $_POST;
+                $bus = new bus($data);
+                $res = insert($bus);
+                $_SESSION['messages'] = $res;
+            }
+            require_once("view/addBusView.php");
+        } elseif ($action == 'lstBus') {//View Liste Bus
+            require_once("view/lstBusView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;
