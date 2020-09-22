@@ -98,3 +98,11 @@ INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_mo
 (20, 'SiteWeb', NULL, 'Pouvoir changer les informations du site web', 'siteweb', 2);
 INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
 (20, 1, 20);
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+(21, 'Ajouter un chauffeur', NULL, 'permet d\\\'ajouter les chauffeurs', 'addChauffeur', 1),
+(22, 'Liste chauffeurs', NULL, 'Liste des chauffeurs', 'lstChauffeur', 1),
+(23, 'Ajouter gare', NULL, 'Permet d\\\'ajouter les gares', 'addGare', 1),
+(24, 'Liste gares', NULL, 'Lister l\\\'ensemble de nos gares', 'lstGare', 1),
+(25, 'Ajouter un bus', NULL, 'Permet d\\\'enregistrer les bus', 'addBus', 1),
+(26, 'Liste des bus', NULL, 'Listing des bus', 'lstBus', 1);
