@@ -157,6 +157,17 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/addMediaView.php");
+        } elseif ($action == 'siteInfo') {//View Modif site info
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification Modif site info
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'information', 'id_information', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=siteweb');
+                    }
+                }
+            }
+            require_once("view/modifSiteView.php");
         } elseif ($action == 'lstMedia') {// View liste des media
             require_once("view/lstMediaView.php");
         } elseif ($action == 'addAvis') {//View Avis
@@ -173,6 +184,18 @@ if (isset($_SESSION['user'])) {
             require_once("view/reservationView.php");
         } elseif ($action == 'abonne') {//View des mails Abonné
             require_once("view/lstAbonneView.php");
+        } elseif ($action == 'siteweb') {//View Site Info
+            require_once("view/siteInfoView.php");
+        } elseif ($action == 'addBus') {//View Add Bus
+            if (!empty($_POST)) {//Ajout Bus
+                $data = $_POST;
+                $bus = new bus($data);
+                $res = insert($bus);
+                $_SESSION['messages'] = $res;
+            }
+            require_once("view/addBusView.php");
+        } elseif ($action == 'lstBus') {//View Liste Bus
+            require_once("view/lstBusView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;

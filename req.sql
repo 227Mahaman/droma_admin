@@ -92,3 +92,17 @@ ALTER TABLE `information`
   ADD PRIMARY KEY (`id_information`);
 ALTER TABLE `information`
   MODIFY `id_information` int(11) NOT NULL AUTO_INCREMENT;
+
+##Mardi 22##
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+(20, 'SiteWeb', NULL, 'Pouvoir changer les informations du site web', 'siteweb', 2);
+INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
+(20, 1, 20);
+
+INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+(21, 'Ajouter un employe', NULL, 'permet d\\\'ajouter les employes', 'addEmploye', 1),
+(22, 'Liste employes', NULL, 'Liste des employes', 'lstEmploye', 1),
+(23, 'Ajouter gare', NULL, 'Permet d\\\'ajouter les gares', 'addGare', 1),
+(24, 'Liste gares', NULL, 'Lister l\\\'ensemble de nos gares', 'lstGare', 1),
+(25, 'Ajouter un bus', NULL, 'Permet d\\\'enregistrer les bus', 'addBus', 1),
+(26, 'Liste des bus', NULL, 'Listing des bus', 'lstBus', 1);
