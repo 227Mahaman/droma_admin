@@ -26,7 +26,7 @@ ob_start();
           </div>
           <div class="form-group">
             <label for="tel">Adresse</label>
-            <input value="<?= (is_array($datas) || is_object($datas))? $datas['tel'] : "" ?>" type="text" required class="form-control" id="tel" name="tel" placeholder="tel">
+            <input value="<?= (is_array($datas) || is_object($datas))? $datas['adresse'] : "" ?>" type="text" required class="form-control" id="adresse" name="adresse" placeholder="adresse">
           </div>
           <div class="form-group">
             <label for="tel">Tél</label>

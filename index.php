@@ -239,12 +239,12 @@ if (isset($_SESSION['user'])) {
             else {
                 if (!empty($_POST)) {//Ajout Garage
                 $data = $_POST;
-                $garage = new garage($data);
+                $garage = new garages($data);
                 $res = insert($garage);
                 $_SESSION['messages'] = $res;
                 }
             }
-            require_once("view/addBusView.php");
+            require_once("view/addGarageView.php");
         } elseif ($action == 'lstEmploye') {//View Liste Employes
             require_once("view/lstEmployesView.php");
         } elseif ($action == 'lstBus') {//View Liste Bus
