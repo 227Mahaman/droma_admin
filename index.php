@@ -187,11 +187,22 @@ if (isset($_SESSION['user'])) {
         } elseif ($action == 'siteweb') {//View Site Info
             require_once("view/siteInfoView.php");
         } elseif ($action == 'addBus') {//View Add Bus
-            if (!empty($_POST)) {//Ajout Bus
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un bus
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'bus', 'id_bus', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstBus');
+                    }
+                }
+            }
+            else {
+                if (!empty($_POST)) {//Ajout Bus
                 $data = $_POST;
                 $bus = new bus($data);
                 $res = insert($bus);
                 $_SESSION['messages'] = $res;
+                }
             }
             require_once("view/addBusView.php");
         } elseif ($action == 'addEmploye') {//View Add Employe

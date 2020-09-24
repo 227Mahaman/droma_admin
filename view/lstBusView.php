@@ -55,7 +55,7 @@ ob_start();
                 <td class="sorting_1"><?= $value['id_bus'] ?></td>
                   <td><?=$value['numero_plaque'] ?></td>
                   <td><?= $value['marque'] ?></td>
-                  <td><?= $value['chauffeur'] ?></td>
+                  <td><?= Manager::getDatas(new employes())->getId_employe($value['chauffeur'])->getNom() ?></td>
                   <td>
                   <a href="index.php?action=addBus&modif=<?= $value['id_bus'] ?>" class="btn btn-primary">
                       <i class="fa fa-pencil"></i>

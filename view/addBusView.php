@@ -38,7 +38,7 @@ ob_start();
 
 
               ?>
-                  <option <?= (is_array($datas) || is_object($datas))? ($value['id_employe']== $datas['employe'])? "selected" : "" : "" ?> value="<?= $value['id_employe'] ?>"><?= $value['nom'] ?></option>
+                  <option <?= (is_array($datas) || is_object($datas))? ($value['id_employe']== $datas['chauffeur'])? "selected" : "" : "" ?> value="<?= $value['id_employe'] ?>"><?= $value['nom'] . ' ' . $value['prénom'] ?></option>
               <?php
                 }
               } else {
