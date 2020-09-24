@@ -194,6 +194,16 @@ if (isset($_SESSION['user'])) {
                 $_SESSION['messages'] = $res;
             }
             require_once("view/addBusView.php");
+        } elseif ($action == 'addEmploye') {//View Add Employe
+            if (!empty($_POST)) {//Ajout Employe
+                //var_dump($_POST);
+                //die();
+                $data = $_POST;
+                $employe = new employes($data);
+                $res = insert($employe);
+                $_SESSION['messages'] = $res;
+            }
+            require_once("view/addEmployesView.php");
         } elseif ($action == 'lstBus') {//View Liste Bus
             require_once("view/lstBusView.php");
         } elseif ($action == 'type') {
