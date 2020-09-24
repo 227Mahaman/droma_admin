@@ -215,6 +215,8 @@ if (isset($_SESSION['user'])) {
                 $_SESSION['messages'] = $res;
             }
             require_once("view/addEmployesView.php");
+        } elseif ($action == 'lstEmploye') {//View Liste Employes
+            require_once("view/lstEmployesView.php");
         } elseif ($action == 'lstBus') {//View Liste Bus
             require_once("view/lstBusView.php");
         } elseif ($action == 'type') {
