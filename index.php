@@ -226,10 +226,31 @@ if (isset($_SESSION['user'])) {
             }
         }
             require_once("view/addEmployesView.php");
+        } elseif ($action == 'addGarage') {//View Add Garages
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un garage
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'garages', 'id_garage', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstGarage');
+                    }
+                }
+            }
+            else {
+                if (!empty($_POST)) {//Ajout Garage
+                $data = $_POST;
+                $garage = new garage($data);
+                $res = insert($garage);
+                $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/addBusView.php");
         } elseif ($action == 'lstEmploye') {//View Liste Employes
             require_once("view/lstEmployesView.php");
         } elseif ($action == 'lstBus') {//View Liste Bus
             require_once("view/lstBusView.php");
+        } elseif ($action == 'lstGarage') {//View Liste Garages
+            require_once("view/lstGaragesView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;
