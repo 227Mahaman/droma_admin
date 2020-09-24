@@ -21,6 +21,7 @@ include_once('model/database/tarif.php');
 include_once('model/database/ville.php');
 include_once('model/database/bus.php');
 include_once('model/database/employes.php');
+include_once('model/database/garages.php');
 
 function addData($data, $table)
 {
