@@ -187,15 +187,70 @@ if (isset($_SESSION['user'])) {
         } elseif ($action == 'siteweb') {//View Site Info
             require_once("view/siteInfoView.php");
         } elseif ($action == 'addBus') {//View Add Bus
-            if (!empty($_POST)) {//Ajout Bus
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un bus
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'bus', 'id_bus', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstBus');
+                    }
+                }
+            }
+            else {
+                if (!empty($_POST)) {//Ajout Bus
                 $data = $_POST;
                 $bus = new bus($data);
                 $res = insert($bus);
                 $_SESSION['messages'] = $res;
+                }
             }
             require_once("view/addBusView.php");
+        } elseif ($action == 'addEmploye') {//View Add Employe
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un employé
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'employes', 'id_employe', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstEmploye');
+                    }
+                }
+            }
+            else {
+                if (!empty($_POST)) {//Ajout Employe
+                //var_dump($_POST);
+                //die();
+                $data = $_POST;
+                $employe = new employes($data);
+                $res = insert($employe);
+                $_SESSION['messages'] = $res;
+            }
+        }
+            require_once("view/addEmployesView.php");
+        } elseif ($action == 'addGarage') {//View Add Garages
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un garage
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'garages', 'id_garage', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstGarage');
+                    }
+                }
+            }
+            else {
+                if (!empty($_POST)) {//Ajout Garage
+                $data = $_POST;
+                $garage = new garages($data);
+                $res = insert($garage);
+                $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/addGarageView.php");
+        } elseif ($action == 'lstEmploye') {//View Liste Employes
+            require_once("view/lstEmployesView.php");
         } elseif ($action == 'lstBus') {//View Liste Bus
             require_once("view/lstBusView.php");
+        } elseif ($action == 'lstGarage') {//View Liste Garages
+            require_once("view/lstGaragesView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;

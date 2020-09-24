@@ -1,5 +1,5 @@
 <?php
-$title = "Listing des bus";
+$title = "Listing des garages";
 ob_start();
 ?>
 <div class="row">
@@ -17,9 +17,9 @@ ob_start();
               <thead>
                 <tr role="row">
                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 10.883px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 155.9px;" aria-label="Engine version: activate to sort column ascending">N° Plaque</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 200.467px;" aria-label="CSS grade: activate to sort column ascending">Marque</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Chauffeur</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 155.9px;" aria-label="Engine version: activate to sort column ascending">Nom</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 200.467px;" aria-label="CSS grade: activate to sort column ascending">Adresse</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Tél</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
                 </tr>
               </thead>
@@ -32,7 +32,7 @@ ob_start();
                     $target = "http://sonef.net/admin/";
                 }
                 $i = 0;
-                $data = Manager::getData('bus')['data'];
+                $data = Manager::getData('garages')['data'];
                 if (is_array($data) || is_object($data)) {
                   foreach ($data as $value) {
                     $i++;
@@ -40,24 +40,24 @@ ob_start();
                       ?>
 
                 <tr role="row" class="odd">
-                  <td class="sorting_1"><?= $value['id_bus'] ?></td>
-                  <td><?=$value['numero_plaque'] ?></td>
-                  <td><?= $value['marque'] ?></td>
-                  <td><?= Manager::getDatas(new employes())->getId_employe($value['chauffeur'])->getNom() ?></td>
+                  <td class="sorting_1"><?= $value['id_garage'] ?></td>
+                  <td><?=$value['nom'] ?></td>
+                  <td><?= $value['adresse'] ?></td>
+                  <td><?= $value['tel'] ?></td>
                  <td>
-                    <a href="index.php?action=addBus&modif=<?= $value['id_bus'] ?>" class="btn btn-primary">
+                    <a href="index.php?action=addGarage&modif=<?= $value['id_garage'] ?>" class="btn btn-primary">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </td>
                 </tr>
                 <?php else : ?>
                 <tr role="row" class="even">
-                <td class="sorting_1"><?= $value['id_bus'] ?></td>
-                  <td><?=$value['numero_plaque'] ?></td>
-                  <td><?= $value['marque'] ?></td>
-                  <td><?= Manager::getDatas(new employes())->getId_employe($value['chauffeur'])->getNom() ?></td>
+                <td class="sorting_1"><?= $value['id_garage'] ?></td>
+                  <td><?=$value['nom'] ?></td>
+                  <td><?= $value['adresse'] ?></td>
+                  <td><?= $value['tel'] ?></td>
                   <td>
-                  <a href="index.php?action=addBus&modif=<?= $value['id_bus'] ?>" class="btn btn-primary">
+                  <a href="index.php?action=addGarage&modif=<?= $value['id_garage'] ?>" class="btn btn-primary">
                       <i class="fa fa-pencil"></i>
                     </a>
                   </td>
@@ -73,9 +73,9 @@ ob_start();
               <tfoot>
                 <tr>
                   <th rowspan="1" colspan="1">ID</th>
-                  <th rowspan="1" colspan="1">N° Plaque</th>
-                  <th rowspan="1" colspan="1">Marque</th>
-                  <th rowspan="1" colspan="1">Chauffeur</th>
+                  <th rowspan="1" colspan="1">Nom</th>
+                  <th rowspan="1" colspan="1">Adresse</th>
+                  <th rowspan="1" colspan="1">Tél</th>
                   <th rowspan="1" colspan="1">Action</th>
                 </tr>
               </tfoot>
