@@ -251,6 +251,13 @@ if (isset($_SESSION['user'])) {
             require_once("view/lstBusView.php");
         } elseif ($action == 'lstGarage') {//View Liste Garages
             require_once("view/lstGaragesView.php");
+        } elseif ($action == 'envoiMail') {//View Send Mail
+            if (!empty($_POST)) {
+                extract($_POST);
+                //$data = $_POST;
+                require_once("model/mail.php");
+            }
+            require_once("view/sendMailView.php");
         } elseif ($action == 'type') {
             if (!empty($_POST)) {
                 $data = $_POST;
