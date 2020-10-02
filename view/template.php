@@ -481,16 +481,55 @@
       $('.textarea').wysihtml5()
     });
     $(function() {
-      $('#example1').DataTable()
+      $('#example1').DataTable({
+        "language": {
+          "emptyTable":     "Pas de données",
+          "info":           "Recherche trouvé _START_ à _END_ ",
+          "infoEmpty":      "Nombre à afficher",
+          "lengthMenu": " Nombre de lot à afficher:_MENU_",
+          "infoFiltered":   "",
+          "search":         "Recherche:",
+          "zeroRecords":    "Recherche introuvable",
+          "paginate": {
+              "first":      "Premier",
+              "last":       "Dernier",
+              "next":       "Suivant",
+              "previous":   "Précédent"
+              },
+          "aria": {
+              "sortAscending":  ": activer pour trier la colonne par ordre croissant",
+              "sortDescending": ": activer pour trier la colonne par ordre décroissant"
+              }
+        }
+      });
       $('#example2').DataTable({
         'paging': true,
         'lengthChange': false,
         'searching': false,
         'ordering': true,
         'info': true,
-        'autoWidth': false
-      })
-    })
+        'autoWidth': false,
+        "language": {
+          "emptyTable":     "Pas de données",
+          "info":           "Recherche trouvé _START_ à _END_ ",
+          "infoEmpty":      "Nombre à afficher",
+          "lengthMenu": " Nombre de lot à afficher:_MENU_",
+          "infoFiltered":   "",
+          "search":         "Recherche:",
+          "zeroRecords":    "Recherche introuvable",
+          "paginate": {
+              "first":      "Premier",
+              "last":       "Dernier",
+              "next":       "Suivant",
+              "previous":   "Précédent"
+              },
+          "aria": {
+              "sortAscending":  ": activer pour trier la colonne par ordre croissant",
+              "sortDescending": ": activer pour trier la colonne par ordre décroissant"
+              }
+        }
+      });
+    });
   </script>
 </body>
 
