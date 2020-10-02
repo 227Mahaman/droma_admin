@@ -3,7 +3,7 @@
 class employes {
 	 public $id_employe;
 	 public $nom;
-	 public $prénom;
+	 public $prenom;
      public $poste;
 	 public $employes=array();
 
@@ -19,11 +19,11 @@ class employes {
                     return $this->employes;
                 }
 
-                public function role($id_employe, $nom, $prénom, $poste)
+                public function role($id_employe, $nom, $prenom, $poste)
                     {
                         $this->id_employe = $id_employe;
 $this->nom = $nom;
-$this->prénom = $prénom;
+$this->prenom = $prenom;
 $this->poste = $poste;
 
                     }
@@ -45,7 +45,7 @@ $this->poste = $poste;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprénom($d['prénom']);
+$this->setprenom($d['prenom']);
 $this->setposte($d['poste']);
 $this->employes =$data; 
  return $this;
@@ -71,7 +71,7 @@ $this->employes =$data;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprénom($d['prénom']);
+$this->setprenom($d['prenom']);
 $this->setposte($d['poste']);
 $this->employes =$data; 
  return $this;
@@ -83,28 +83,28 @@ $this->employes =$data;
                         
                     }
                     /**
-                    * Get the value of prénom
+                    * Get the value of prenom
                     */ 
-                    public function getprénom($prénom=null)
+                    public function getprenom($prenom=null)
                     {
-                        if ($prénom != null && is_array($this->employes) && count($this->employes)!=0) {
+                        if ($prenom != null && is_array($this->employes) && count($this->employes)!=0) {
                             $table_name = strtolower(get_class($this));
-                            $query = "SELECT * FROM $table_name WHERE prénom = ?";
+                            $query = "SELECT * FROM $table_name WHERE prenom = ?";
                             $req = Manager::bdd()->prepare($query);
-                            $req->execute([$prénom]);
+                            $req->execute([$prenom]);
                             $data = "";
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprénom($d['prénom']);
+$this->setprenom($d['prenom']);
 $this->setposte($d['poste']);
 $this->employes =$data; 
  return $this;
                                 }
                             
                         } else {
-                            return $this->prénom;
+                            return $this->prenom;
                         }
                         
                     }
@@ -123,7 +123,7 @@ $this->employes =$data;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprénom($d['prénom']);
+$this->setprenom($d['prenom']);
 $this->setposte($d['poste']);
 $this->employes =$data; 
  return $this;
@@ -159,13 +159,13 @@ $this->employes =$data;
                        return $this;
                    }
                     /**
-                    * Set the value of prénom
+                    * Set the value of prenom
                     *
                     * @return  self
                     */ 
-                   public function setprénom($prénom)
+                   public function setprenom($prenom)
                    {
-                    $this->prénom = $prénom;
+                    $this->prenom = $prenom;
                
                        return $this;
                    }

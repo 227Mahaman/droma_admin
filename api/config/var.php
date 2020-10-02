@@ -30,7 +30,7 @@ $this->config['tables']['client'] = ['id_client','nom','prenom','tel','email','f
 
 $this->config['tables']['actions']['id'] = ['id'];$this->config['tables']['agence']['id'] = ['id_agence'];$this->config['tables']['avis']['id'] = ['id_avis'];$this->config['tables']['billet']['id'] = ['id_billet'];$this->config['tables']['bus']['id'] = ['id_bus'];$this->config['tables']['client']['id'] = ['id_client'];
 
-$this->config['tables']['employes'] = ['id_employe','nom','prénom','poste',];
+$this->config['tables']['employes'] = ['id_employe','nom','prenom','poste',];
 
 $this->config['tables']['actions']['id'] = ['id'];$this->config['tables']['agence']['id'] = ['id_agence'];$this->config['tables']['avis']['id'] = ['id_avis'];$this->config['tables']['billet']['id'] = ['id_billet'];$this->config['tables']['bus']['id'] = ['id_bus'];$this->config['tables']['client']['id'] = ['id_client'];$this->config['tables']['employes']['id'] = ['id_employe'];
 

@@ -25,8 +25,8 @@ ob_start();
             <input value="<?= (is_array($datas) || is_object($datas))? $datas['nom'] : "" ?>" type="text" required class="form-control" id="nom" name="nom" placeholder="Nom de l'agent">
           </div>
           <div class="form-group">
-            <label for="prénom">Prénom</label>
-            <input value="<?= (is_array($datas) || is_object($datas))? $datas['prénom'] : "" ?>" type="text" required class="form-control" id="prénom" name="prénom" placeholder="Prénom de l'agent">
+            <label for="prenom">Prénom</label>
+            <input value="<?= (is_array($datas) || is_object($datas))? $datas['prenom'] : "" ?>" type="text" required class="form-control" id="prenom" name="prenom" placeholder="Prénom de l'agent">
           </div>
           <div class="form-group">
             <label for="poste">Poste</label>

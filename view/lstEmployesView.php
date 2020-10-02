@@ -42,7 +42,7 @@ ob_start();
                 <tr role="row" class="odd">
                   <td class="sorting_1"><?= $value['id_employe'] ?></td>
                   <td><?=$value['nom'] ?></td>
-                  <td><?= $value['prénom'] ?></td>
+                  <td><?= $value['prenom'] ?></td>
                   <td><?= $value['poste'] ?></td>
                  <td>
                     <a href="index.php?action=addEmploye&modif=<?= $value['id_employe'] ?>" class="btn btn-primary">
@@ -54,7 +54,7 @@ ob_start();
                 <tr role="row" class="even">
                 <td class="sorting_1"><?= $value['id_employe'] ?></td>
                   <td><?=$value['nom'] ?></td>
-                  <td><?= $value['prénom'] ?></td>
+                  <td><?= $value['prenom'] ?></td>
                   <td><?= $value['poste'] ?></td>
                   <td>
                   <a href="index.php?action=addEmploye&modif=<?= $value['id_employe'] ?>" class="btn btn-primary">

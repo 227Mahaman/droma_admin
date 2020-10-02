@@ -106,3 +106,6 @@ INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_mo
 (24, 'Liste gares', NULL, 'Lister l\\\'ensemble de nos gares', 'lstGare', 1),
 (25, 'Ajouter un bus', NULL, 'Permet d\\\'enregistrer les bus', 'addBus', 1),
 (26, 'Liste des bus', NULL, 'Listing des bus', 'lstBus', 1);
+
+###02 Oct 2020##
+ALTER TABLE `employes` CHANGE `prénom` `prenom` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
