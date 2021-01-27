@@ -59,7 +59,7 @@ ob_start();
                 <tr role="row" class="even">
                   <td class="sorting_1"><?=$value['nom'] ." ".$value['prenom'] ?></td>
                   <td><?= $value['tel'] ?></td>
-                  <td><?= $value['date']. "depart à". $value['heure'] ?></td>
+                  <td><?= $value['date']. " depart à". $value['heure'] ?></td>
                   <td><?= $value['place'] ?></td>
                   <td><?= $value['cout'] ?></td>
                   <td><?= $value['depart'] ?></td>
