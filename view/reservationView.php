@@ -23,7 +23,6 @@ ob_start();
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Montant</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Départ</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Destination</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 110.883px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -40,7 +39,6 @@ ob_start();
                r.client=c.id_client AND r.billet=b.id_billet AND( b.depart= v.id_ville OR 
                b.destination = v.id_ville)";
                $data = Manager::getMultiplesRecords($sql);
-                // $data = Manager::getData('post')['data'];
                 if (is_array($data) || is_object($data)) {
                   foreach ($data as $value) {
                     $i++;
@@ -55,11 +53,7 @@ ob_start();
                   <td><?= $value['cout'] ?></td>
                   <td><?= $value['depart'] ?></td>
                   <td><?= $value['destination'] ?></td>
-                 <td>
-                    <a href="index.php?action=addMedia&modif=<?= $value['id_post'] ?>" class="btn btn-primary">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                  </td>
+                 
                 </tr>
                 <?php else : ?>
                 <tr role="row" class="even">
@@ -70,11 +64,7 @@ ob_start();
                   <td><?= $value['cout'] ?></td>
                   <td><?= $value['depart'] ?></td>
                   <td><?= $value['destination'] ?></td>
-                  <td>
-                  <a href="index.php?action=addMedia&modif=<?= $value['id_post'] ?>" class="btn btn-primary">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                  </td>
+                  
                 </tr>
                 <?php endif; ?>
                 <?php
@@ -86,13 +76,13 @@ ob_start();
               </tbody>
               <tfoot>
                 <tr>
-                  <th rowspan="1" colspan="1">ID</th>
-                  <th rowspan="1" colspan="1">Intitulé</th>
-                  <th rowspan="1" colspan="1">Description</th>
-                  <th rowspan="1" colspan="1">Thème</th>
+                  <th rowspan="1" colspan="1">Client</th>
+                  <th rowspan="1" colspan="1">N° de Téléphone</th>
                   <th rowspan="1" colspan="1">Date</th>
-                  <th rowspan="1" colspan="1">Media</th>
-                  <th rowspan="1" colspan="1">Action</th>
+                  <th rowspan="1" colspan="1">Place</th>
+                  <th rowspan="1" colspan="1">Montant</th>
+                  <th rowspan="1" colspan="1">Départ</th>
+                  <th rowspan="1" colspan="1">Destination</th>
                 </tr>
               </tfoot>
             </table>
