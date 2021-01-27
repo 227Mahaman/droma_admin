@@ -79,15 +79,15 @@ class UserManager  extends Manager
             
             $res = $res['data'];
             if (password_verify($data['password_'], $res['password_'])) {
-                $_SESSION['user']['id'] = $res['id'];
-                $_SESSION['user']['first_name'] = $res['first_name'];
-                $_SESSION['user']['last_name'] = $res['last_name'];
-                $_SESSION['user']['matricule'] = $res['matricule'];
-                $_SESSION['user']['phone_number'] = $res['phone_number'];
-                $_SESSION['user']['role'] = self::getData('roles', 'id', $res['role'])['data']['name'];
-                $_SESSION['user']['roleId'] = self::getData('roles', 'id', $res['role'])['data']['id'];
-                $_SESSION['user']['type_agent'] = self::getData('type_agent', 'id', $res['type_agent'])['data']['label'];
-                $_SESSION['user']['photo'] = self::getData('files', 'id', $res['photo'])['data']['file_url'];
+                $_SESSION['sonef']['id'] = $res['id'];
+                $_SESSION['sonef']['first_name'] = $res['first_name'];
+                $_SESSION['sonef']['last_name'] = $res['last_name'];
+                $_SESSION['sonef']['matricule'] = $res['matricule'];
+                $_SESSION['sonef']['phone_number'] = $res['phone_number'];
+                $_SESSION['sonef']['role'] = self::getData('roles', 'id', $res['role'])['data']['name'];
+                $_SESSION['sonef']['roleId'] = self::getData('roles', 'id', $res['role'])['data']['id'];
+                $_SESSION['sonef']['type_agent'] = self::getData('type_agent', 'id', $res['type_agent'])['data']['label'];
+                $_SESSION['sonef']['photo'] = self::getData('files', 'id', $res['photo'])['data']['file_url'];
                 return 1;
             }else {
                 return 'N° de téléphone ou mot de passe incorrecte';

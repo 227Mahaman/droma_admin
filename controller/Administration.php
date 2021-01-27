@@ -22,10 +22,11 @@ include_once('model/database/ville.php');
 include_once('model/database/bus.php');
 include_once('model/database/employes.php');
 include_once('model/database/garages.php');
+include_once('model/database/slider.php');
 
 function addData($data, $table)
 {
-    $url = API_ROOT_PATH. "/object/$table";
+    $url = API_ROOT_PATH . "/object/$table";
     $res = Manager::addoNTable($url, $data);
     $res = Manager::correct($res);
     if (isset($res['error'])) {
@@ -35,21 +36,22 @@ function addData($data, $table)
                 $res = Manager::addHistory($table, $lastId);
                 if ($res != 1) {
                     return $res['message'];
-                }else {
+                } else {
                     return 1;
                 }
-            }else {
+            } else {
                 return $res['message'];
             }
-        }else {
+        } else {
             return $res['message'];
         }
-    }else {
+    } else {
         return $res['message'];
     }
 }
 
-function insert($table) {
+function insert($table)
+{
     $manager = new Manager();
     return $manager->insert($table);
 }
@@ -62,38 +64,54 @@ function setActionUrl($name)
 
 function getModules()
 {
-    $res = Manager::getData('module_role', 'role_id', $_SESSION['user']['roleId']);
-    $_SESSION['user']['roles']['modules'] = $res;
+    $res = Manager::getData('module_role', 'role_id', $_SESSION['sonef']['roleId']);
+    $_SESSION['sonef']['roles']['modules'] = $res;
 }
 
 function getActions($moduleId)
 {
-   $res = array();
-   // Manager::showError($module)
-   $sql = "SELECT * FROM module WHERE sub_module=?";
-       $res = Manager::getMultiplesRecords($sql, [$moduleId]);
-   return $res;
+    $res = array();
+    // Manager::showError($module)
+    $sql = "SELECT * FROM module WHERE sub_module=?";
+    $res = Manager::getMultiplesRecords($sql, [$moduleId]);
+    return $res;
 }
 
 function haveAction($role, $module)
 {
-   $res = array();
-   // Manager::showError($module)
-   $sql = "SELECT * FROM module_role WHERE role_id=? AND module=?";
-   $res = Manager::getMultiplesRecords($sql, [$role, $module]);
-   if ((is_array($res) || is_object($res)) && count($res)>0) {
-       return true;
-   }else {
-       return false;
-   }
-   
+    $res = array();
+    // Manager::showError($module)
+    $sql = "SELECT * FROM module_role WHERE role_id=? AND module=?";
+    $res = Manager::getMultiplesRecords($sql, [$role, $module]);
+    if ((is_array($res) || is_object($res)) && count($res) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 // trouver ici https://stackoverflow.com/a/965269/9928098
-function limit_text($text, $limit) {
+function limit_text($text, $limit)
+{
     if (str_word_count($text, 0) > $limit) {
         $words = str_word_count($text, 2);
         $pos = array_keys($words);
         $text = substr($text, 0, $pos[$limit]) . '...';
     }
     return $text;
-  }
+}
+
+function uploadFile($file)
+{
+    if (!empty($file) && !empty($file['name'])) {
+
+        // Get image name
+        $src = date("Y.m.d.H.i.s") . $file['name'];
+        // define Where image will be stored
+        $target = "public/img/slider" . $src;
+        // upload image to folder
+        //Manager::showError($file);
+        if (move_uploaded_file($file['tmp_name'], $target)) {
+            return $target;
+        } else return 0;
+    }
+}

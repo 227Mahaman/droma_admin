@@ -6,7 +6,7 @@ if (isset($_SESSION['messages'])) {
     unset($_SESSION['messages']);
 }
 
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['sonef'])) {
     getModules();
     if (!empty($_GET['action'])) {
         extract($_GET);
@@ -46,7 +46,7 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/permissionView.php");
-        }  elseif ($action == 'pays') {//View Pays
+        } elseif ($action == 'pays') { //View Pays
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un PAYS
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -65,7 +65,7 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/paysView.php");
-        } elseif ($action == 'ville') {//View ville
+        } elseif ($action == 'ville') { //View ville
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'une Ville
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -84,7 +84,7 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/villeView.php");
-        } elseif ($action == 'tarif') {//View ville
+        } elseif ($action == 'tarif') { //View ville
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Tarif
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -103,13 +103,13 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/tarifView.php");
-        } elseif ($action == 'agence') {//View Agence
+        } elseif ($action == 'agence') { //View Agence
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Agence
                 if (!empty($_POST)) {
                     $data = $_POST;
                     // Manager::showError($_FILES);
                     if (!empty($_FILES['file']['name'])) {
-                        
+
                         $files = new File();
                         $data['file'] = $files->uploadFilePicture($_FILES['file']);
                     }
@@ -136,7 +136,7 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/agenceView.php");
-        } elseif ($action == 'addMedia') {//View Media
+        } elseif ($action == 'addMedia') { //View Media
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Media
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -150,14 +150,37 @@ if (isset($_SESSION['user'])) {
                     $data = $_POST;
                     $files = new File();
                     $data['file'] = $files->uploadFilePicture($_FILES['file']);
-                    $data['user_create'] = $_SESSION['user']['id'];
+                    $data['user_create'] = $_SESSION['sonef']['id'];
                     $post = new post($data);
                     $res = insert($post);
                     $_SESSION['messages'] = $res;
                 }
             }
             require_once("view/addMediaView.php");
-        } elseif ($action == 'siteInfo') {//View Modif site info
+        } elseif ($action == 'addSliders') { //View Sliders
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un Sliders
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $res = Manager::updateData($data, 'post', 'id_post', $_GET['modif']);
+                    if ($res['code'] = 200) {
+                        header('Location: index.php?action=lstSliders');
+                    }
+                }
+            } else { // Ajout Sliders
+               
+                if ( !empty($_FILES)) {
+                    $data = $_POST;
+                    $data['img1'] = uploadFile($_FILES['img1']);
+                    $data['img2'] = uploadFile($_FILES['img2']);
+                    $data['img3'] = uploadFile($_FILES['img3']);
+                    
+                    $slider = new slider($data);
+                    $res = insert($slider);
+                    $_SESSION['messages'] = $res;
+                }
+            }
+            require_once("view/addSlidersView.php");
+        } elseif ($action == 'siteInfo') { //View Modif site info
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification Modif site info
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -168,10 +191,10 @@ if (isset($_SESSION['user'])) {
                 }
             }
             require_once("view/modifSiteView.php");
-        } elseif ($action == 'lstMedia') {// View liste des media
+        } elseif ($action == 'lstMedia') { // View liste des media
             require_once("view/lstMediaView.php");
-        } elseif ($action == 'addAvis') {//View Avis
-            if (!empty($_POST) && !empty($_FILES)) {//Ajout Avis
+        } elseif ($action == 'addAvis') { //View Avis
+            if (!empty($_POST) && !empty($_FILES)) { //Ajout Avis
                 $data = $_POST;
                 $files = new File();
                 $data['file'] = $files->uploadFilePicture($_FILES['file']);
@@ -180,13 +203,13 @@ if (isset($_SESSION['user'])) {
                 $_SESSION['messages'] = $res;
             }
             require_once("view/addAvisView.php");
-        } elseif ($action == 'consulter') {// View liste des media
+        } elseif ($action == 'consulter') { // View liste des media
             require_once("view/reservationView.php");
-        } elseif ($action == 'abonne') {//View des mails Abonné
+        } elseif ($action == 'abonne') { //View des mails Abonné
             require_once("view/lstAbonneView.php");
-        } elseif ($action == 'siteweb') {//View Site Info
+        } elseif ($action == 'siteweb') { //View Site Info
             require_once("view/siteInfoView.php");
-        } elseif ($action == 'addBus') {//View Add Bus
+        } elseif ($action == 'addBus') { //View Add Bus
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un bus
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -195,17 +218,16 @@ if (isset($_SESSION['user'])) {
                         header('Location: index.php?action=lstBus');
                     }
                 }
-            }
-            else {
-                if (!empty($_POST)) {//Ajout Bus
-                $data = $_POST;
-                $bus = new bus($data);
-                $res = insert($bus);
-                $_SESSION['messages'] = $res;
+            } else {
+                if (!empty($_POST)) { //Ajout Bus
+                    $data = $_POST;
+                    $bus = new bus($data);
+                    $res = insert($bus);
+                    $_SESSION['messages'] = $res;
                 }
             }
             require_once("view/addBusView.php");
-        } elseif ($action == 'addEmploye') {//View Add Employe
+        } elseif ($action == 'addEmploye') { //View Add Employe
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un employé
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -214,19 +236,18 @@ if (isset($_SESSION['user'])) {
                         header('Location: index.php?action=lstEmploye');
                     }
                 }
+            } else {
+                if (!empty($_POST)) { //Ajout Employe
+                    //var_dump($_POST);
+                    //die();
+                    $data = $_POST;
+                    $employe = new employes($data);
+                    $res = insert($employe);
+                    $_SESSION['messages'] = $res;
+                }
             }
-            else {
-                if (!empty($_POST)) {//Ajout Employe
-                //var_dump($_POST);
-                //die();
-                $data = $_POST;
-                $employe = new employes($data);
-                $res = insert($employe);
-                $_SESSION['messages'] = $res;
-            }
-        }
             require_once("view/addEmployesView.php");
-        } elseif ($action == 'addGarage') {//View Add Garages
+        } elseif ($action == 'addGarage') { //View Add Garages
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) { //Modification d'un garage
                 if (!empty($_POST)) {
                     $data = $_POST;
@@ -235,23 +256,22 @@ if (isset($_SESSION['user'])) {
                         header('Location: index.php?action=lstGarage');
                     }
                 }
-            }
-            else {
-                if (!empty($_POST)) {//Ajout Garage
-                $data = $_POST;
-                $garage = new garages($data);
-                $res = insert($garage);
-                $_SESSION['messages'] = $res;
+            } else {
+                if (!empty($_POST)) { //Ajout Garage
+                    $data = $_POST;
+                    $garage = new garages($data);
+                    $res = insert($garage);
+                    $_SESSION['messages'] = $res;
                 }
             }
             require_once("view/addGarageView.php");
-        } elseif ($action == 'lstEmploye') {//View Liste Employes
+        } elseif ($action == 'lstEmploye') { //View Liste Employes
             require_once("view/lstEmployesView.php");
-        } elseif ($action == 'lstBus') {//View Liste Bus
+        } elseif ($action == 'lstBus') { //View Liste Bus
             require_once("view/lstBusView.php");
-        } elseif ($action == 'lstGarage') {//View Liste Garages
+        } elseif ($action == 'lstGarage') { //View Liste Garages
             require_once("view/lstGaragesView.php");
-        } elseif ($action == 'envoiMail') {//View Send Mail
+        } elseif ($action == 'envoiMail') { //View Send Mail
             if (!empty($_POST)) {
                 extract($_POST);
                 //$data = $_POST;
@@ -280,13 +300,12 @@ if (isset($_SESSION['user'])) {
                         $files = new file();
                         $data['photo'] = $files->uploadFilePicture($_FILES['profile_picture']);
                     }
-                   
-                    $res = Manager::updateData($data, 'users','id', $_GET['modif']);
+
+                    $res = Manager::updateData($data, 'users', 'id', $_GET['modif']);
                     if ($res['code'] = 200) {
                     }
-
                 }
-            } else {//Ajout User
+            } else { //Ajout User
                 if (!empty($_POST) && !empty($_FILES)) {
                     $data = $_POST;
                     $files = new File();
@@ -325,12 +344,12 @@ if (isset($_SESSION['user'])) {
             require_once("view/roleModuleView.php");
         } elseif ($action == 'profile') {
             require_once("view/profileView.php");
-        } elseif ($action == 'dashboard') {//View Dashboard
+        } elseif ($action == 'dashboard') { //View Dashboard
             require_once("view/dashboardView.php");
-        } elseif ($action == 'exportProjet') {//View listes des Coachs
+        } elseif ($action == 'exportProjet') { //View listes des Coachs
             include_once('model/export_projet.php');
             //require_once("view/listeProjetView.php");
-        }elseif ($action == 'exportToPdf') {//View listes des Coachs
+        } elseif ($action == 'exportToPdf') { //View listes des Coachs
             include_once('model/export_to_pdf.php');
             //require_once("view/listeProjetView.php");
         } elseif ($action == 'logout') {

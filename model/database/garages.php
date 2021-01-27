@@ -4,7 +4,7 @@ class garages {
 	 public $id_garage;
 	 public $nom;
 	 public $adresse;
-     public $tel;
+	 public $tel;
 	 public $garages=array();
 
 
@@ -30,7 +30,13 @@ $this->tel = $tel;
                 
 
 
-                    /**busis));
+                    /**
+                    * Get the value of id_garage
+                    */ 
+                    public function getId_garage($id_garage=null)
+                    {
+                        if ($id_garage != null && is_array($this->garages) && count($this->garages)!=0) {
+                            $table_name = strtolower(get_class($this));
                             $query = "SELECT * FROM $table_name WHERE id_garage = ?";
                             $req = Manager::bdd()->prepare($query);
                             $req->execute([$id_garage]);
@@ -38,9 +44,9 @@ $this->tel = $tel;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId_garage($d['id_garage']);
-$this->setNumero_plaque($d['nom']);
-$this->setadresse($d['adresse']);
-$this->settel($d['tel']);
+$this->setNom($d['nom']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
 $this->garages =$data; 
  return $this;
                                 }
@@ -53,7 +59,7 @@ $this->garages =$data;
                     /**
                     * Get the value of nom
                     */ 
-                    public function getNumero_plaque($nom=null)
+                    public function getNom($nom=null)
                     {
                         if ($nom != null && is_array($this->garages) && count($this->garages)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -64,9 +70,9 @@ $this->garages =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId_garage($d['id_garage']);
-$this->setNumero_plaque($d['nom']);
-$this->setadresse($d['adresse']);
-$this->settel($d['tel']);
+$this->setNom($d['nom']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
 $this->garages =$data; 
  return $this;
                                 }
@@ -79,7 +85,7 @@ $this->garages =$data;
                     /**
                     * Get the value of adresse
                     */ 
-                    public function getadresse($adresse=null)
+                    public function getAdresse($adresse=null)
                     {
                         if ($adresse != null && is_array($this->garages) && count($this->garages)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -90,9 +96,9 @@ $this->garages =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId_garage($d['id_garage']);
-$this->setNumero_plaque($d['nom']);
-$this->setadresse($d['adresse']);
-$this->settel($d['tel']);
+$this->setNom($d['nom']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
 $this->garages =$data; 
  return $this;
                                 }
@@ -105,7 +111,7 @@ $this->garages =$data;
                     /**
                     * Get the value of tel
                     */ 
-                    public function gettel($tel=null)
+                    public function getTel($tel=null)
                     {
                         if ($tel != null && is_array($this->garages) && count($this->garages)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -116,9 +122,9 @@ $this->garages =$data;
                             if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
 $d=$data[0];
 $this->setId_garage($d['id_garage']);
-$this->setNumero_plaque($d['nom']);
-$this->setadresse($d['adresse']);
-$this->settel($d['tel']);
+$this->setNom($d['nom']);
+$this->setAdresse($d['adresse']);
+$this->setTel($d['tel']);
 $this->garages =$data; 
  return $this;
                                 }
@@ -146,7 +152,7 @@ $this->garages =$data;
                     *
                     * @return  self
                     */ 
-                   public function setNumero_plaque($nom)
+                   public function setNom($nom)
                    {
                     $this->nom = $nom;
                
@@ -157,7 +163,7 @@ $this->garages =$data;
                     *
                     * @return  self
                     */ 
-                   public function setadresse($adresse)
+                   public function setAdresse($adresse)
                    {
                     $this->adresse = $adresse;
                
@@ -168,7 +174,7 @@ $this->garages =$data;
                     *
                     * @return  self
                     */ 
-                   public function settel($tel)
+                   public function setTel($tel)
                    {
                     $this->tel = $tel;
                

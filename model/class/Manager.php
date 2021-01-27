@@ -202,7 +202,7 @@ class Manager extends Managers
     {
         $url = API_ROOT_PATH . "/history_data";
         $data = array();
-        $data['created_by'] = $_SESSION['user']['id'];
+        $data['created_by'] = $_SESSION['sonef']['id'];
         $data['action'] = 'ajout';
         $data['table_name'] = $table;
         $data['table_id'] = $lastId;

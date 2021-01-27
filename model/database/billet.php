@@ -5,6 +5,7 @@ class billet {
 	 public $code_billet;
 	 public $created_at;
 	 public $user_create;
+	 public $bus;
 	 public $depart;
 	 public $destination;
 	 public $billet=array();
@@ -21,12 +22,13 @@ class billet {
                     return $this->billet;
                 }
 
-                public function role($id_billet, $code_billet, $created_at, $user_create, $depart, $destination)
+                public function role($id_billet, $code_billet, $created_at, $user_create, $bus, $depart, $destination)
                     {
                         $this->id_billet = $id_billet;
 $this->code_billet = $code_billet;
 $this->created_at = $created_at;
 $this->user_create = $user_create;
+$this->bus = $bus;
 $this->depart = $depart;
 $this->destination = $destination;
 
@@ -51,6 +53,7 @@ $this->setId_billet($d['id_billet']);
 $this->setCode_billet($d['code_billet']);
 $this->setCreated_at($d['created_at']);
 $this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
 $this->setDepart($d['depart']);
 $this->setDestination($d['destination']);
 $this->billet =$data; 
@@ -79,6 +82,7 @@ $this->setId_billet($d['id_billet']);
 $this->setCode_billet($d['code_billet']);
 $this->setCreated_at($d['created_at']);
 $this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
 $this->setDepart($d['depart']);
 $this->setDestination($d['destination']);
 $this->billet =$data; 
@@ -107,6 +111,7 @@ $this->setId_billet($d['id_billet']);
 $this->setCode_billet($d['code_billet']);
 $this->setCreated_at($d['created_at']);
 $this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
 $this->setDepart($d['depart']);
 $this->setDestination($d['destination']);
 $this->billet =$data; 
@@ -135,6 +140,7 @@ $this->setId_billet($d['id_billet']);
 $this->setCode_billet($d['code_billet']);
 $this->setCreated_at($d['created_at']);
 $this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
 $this->setDepart($d['depart']);
 $this->setDestination($d['destination']);
 $this->billet =$data; 
@@ -143,6 +149,35 @@ $this->billet =$data;
                             
                         } else {
                             return $this->user_create;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of bus
+                    */ 
+                    public function getBus($bus=null)
+                    {
+                        if ($bus != null && is_array($this->billet) && count($this->billet)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE bus = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$bus]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_billet($d['id_billet']);
+$this->setCode_billet($d['code_billet']);
+$this->setCreated_at($d['created_at']);
+$this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
+$this->setDepart($d['depart']);
+$this->setDestination($d['destination']);
+$this->billet =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->bus;
                         }
                         
                     }
@@ -163,6 +198,7 @@ $this->setId_billet($d['id_billet']);
 $this->setCode_billet($d['code_billet']);
 $this->setCreated_at($d['created_at']);
 $this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
 $this->setDepart($d['depart']);
 $this->setDestination($d['destination']);
 $this->billet =$data; 
@@ -191,6 +227,7 @@ $this->setId_billet($d['id_billet']);
 $this->setCode_billet($d['code_billet']);
 $this->setCreated_at($d['created_at']);
 $this->setUser_create($d['user_create']);
+$this->setBus($d['bus']);
 $this->setDepart($d['depart']);
 $this->setDestination($d['destination']);
 $this->billet =$data; 
@@ -245,6 +282,17 @@ $this->billet =$data;
                    public function setUser_create($user_create)
                    {
                     $this->user_create = $user_create;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of bus
+                    *
+                    * @return  self
+                    */ 
+                   public function setBus($bus)
+                   {
+                    $this->bus = $bus;
                
                        return $this;
                    }

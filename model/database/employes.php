@@ -4,7 +4,7 @@ class employes {
 	 public $id_employe;
 	 public $nom;
 	 public $prenom;
-     public $poste;
+	 public $poste;
 	 public $employes=array();
 
 
@@ -45,8 +45,8 @@ $this->poste = $poste;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprenom($d['prenom']);
-$this->setposte($d['poste']);
+$this->setPrenom($d['prenom']);
+$this->setPoste($d['poste']);
 $this->employes =$data; 
  return $this;
                                 }
@@ -71,8 +71,8 @@ $this->employes =$data;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprenom($d['prenom']);
-$this->setposte($d['poste']);
+$this->setPrenom($d['prenom']);
+$this->setPoste($d['poste']);
 $this->employes =$data; 
  return $this;
                                 }
@@ -85,7 +85,7 @@ $this->employes =$data;
                     /**
                     * Get the value of prenom
                     */ 
-                    public function getprenom($prenom=null)
+                    public function getPrenom($prenom=null)
                     {
                         if ($prenom != null && is_array($this->employes) && count($this->employes)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -97,8 +97,8 @@ $this->employes =$data;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprenom($d['prenom']);
-$this->setposte($d['poste']);
+$this->setPrenom($d['prenom']);
+$this->setPoste($d['poste']);
 $this->employes =$data; 
  return $this;
                                 }
@@ -111,7 +111,7 @@ $this->employes =$data;
                     /**
                     * Get the value of poste
                     */ 
-                    public function getposte($poste=null)
+                    public function getPoste($poste=null)
                     {
                         if ($poste != null && is_array($this->employes) && count($this->employes)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -123,8 +123,8 @@ $this->employes =$data;
 $d=$data[0];
 $this->setId_employe($d['id_employe']);
 $this->setNom($d['nom']);
-$this->setprenom($d['prenom']);
-$this->setposte($d['poste']);
+$this->setPrenom($d['prenom']);
+$this->setPoste($d['poste']);
 $this->employes =$data; 
  return $this;
                                 }
@@ -163,7 +163,7 @@ $this->employes =$data;
                     *
                     * @return  self
                     */ 
-                   public function setprenom($prenom)
+                   public function setPrenom($prenom)
                    {
                     $this->prenom = $prenom;
                
@@ -174,7 +174,7 @@ $this->employes =$data;
                     *
                     * @return  self
                     */ 
-                   public function setposte($poste)
+                   public function setPoste($poste)
                    {
                     $this->poste = $poste;
                

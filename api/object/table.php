@@ -110,12 +110,12 @@ switch ($request_method) {
                     }
                 }
                 
-                if ($_SESSION['user']['roleId'] == 6) {
+                if ($_SESSION['sonef']['roleId'] == 6) {
                     $sql = "SELECT * FROM projet p, equipe e, region r, files f,
                     note_hackaton n, jury_projet j WHERE p.equipe = e.id_equipe AND p.id_projet = n.projet
                     AND e.region = r.id_region AND f.id = p.file AND p.id_projet=j.projet 
                     AND j.jury=? AND selection_final=? AND (n.created_by=? OR n.update_by=?) GROUP BY p.id_projet ORDER BY p.moyen DESC";
-                    echo $table->getMultiplesRecords($sql, [$_SESSION['user']['id'], 'Oui', $_SESSION['user']['id'], $_SESSION['user']['id']], true);
+                    echo $table->getMultiplesRecords($sql, [$_SESSION['sonef']['id'], 'Oui', $_SESSION['sonef']['id'], $_SESSION['sonef']['id']], true);
                 } else {
                     $sql  = "SELECT * FROM projet p, equipe e, region r, files f, note_hackaton n 
                     WHERE p.equipe = e.id_equipe AND e.region = r.id_region AND f.id = p.file  

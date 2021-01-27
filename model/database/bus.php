@@ -4,7 +4,7 @@ class bus {
 	 public $id_bus;
 	 public $numero_plaque;
 	 public $marque;
-     public $chauffeur;
+	 public $chauffeur;
 	 public $bus=array();
 
 
@@ -45,8 +45,8 @@ $this->chauffeur = $chauffeur;
 $d=$data[0];
 $this->setId_bus($d['id_bus']);
 $this->setNumero_plaque($d['numero_plaque']);
-$this->setmarque($d['marque']);
-$this->setchauffeur($d['chauffeur']);
+$this->setMarque($d['marque']);
+$this->setChauffeur($d['chauffeur']);
 $this->bus =$data; 
  return $this;
                                 }
@@ -71,8 +71,8 @@ $this->bus =$data;
 $d=$data[0];
 $this->setId_bus($d['id_bus']);
 $this->setNumero_plaque($d['numero_plaque']);
-$this->setmarque($d['marque']);
-$this->setchauffeur($d['chauffeur']);
+$this->setMarque($d['marque']);
+$this->setChauffeur($d['chauffeur']);
 $this->bus =$data; 
  return $this;
                                 }
@@ -85,7 +85,7 @@ $this->bus =$data;
                     /**
                     * Get the value of marque
                     */ 
-                    public function getmarque($marque=null)
+                    public function getMarque($marque=null)
                     {
                         if ($marque != null && is_array($this->bus) && count($this->bus)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -97,8 +97,8 @@ $this->bus =$data;
 $d=$data[0];
 $this->setId_bus($d['id_bus']);
 $this->setNumero_plaque($d['numero_plaque']);
-$this->setmarque($d['marque']);
-$this->setchauffeur($d['chauffeur']);
+$this->setMarque($d['marque']);
+$this->setChauffeur($d['chauffeur']);
 $this->bus =$data; 
  return $this;
                                 }
@@ -111,7 +111,7 @@ $this->bus =$data;
                     /**
                     * Get the value of chauffeur
                     */ 
-                    public function getchauffeur($chauffeur=null)
+                    public function getChauffeur($chauffeur=null)
                     {
                         if ($chauffeur != null && is_array($this->bus) && count($this->bus)!=0) {
                             $table_name = strtolower(get_class($this));
@@ -123,8 +123,8 @@ $this->bus =$data;
 $d=$data[0];
 $this->setId_bus($d['id_bus']);
 $this->setNumero_plaque($d['numero_plaque']);
-$this->setmarque($d['marque']);
-$this->setchauffeur($d['chauffeur']);
+$this->setMarque($d['marque']);
+$this->setChauffeur($d['chauffeur']);
 $this->bus =$data; 
  return $this;
                                 }
@@ -163,7 +163,7 @@ $this->bus =$data;
                     *
                     * @return  self
                     */ 
-                   public function setmarque($marque)
+                   public function setMarque($marque)
                    {
                     $this->marque = $marque;
                
@@ -174,7 +174,7 @@ $this->bus =$data;
                     *
                     * @return  self
                     */ 
-                   public function setchauffeur($chauffeur)
+                   public function setChauffeur($chauffeur)
                    {
                     $this->chauffeur = $chauffeur;
                

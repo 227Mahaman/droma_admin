@@ -93,19 +93,25 @@ ALTER TABLE `information`
 ALTER TABLE `information`
   MODIFY `id_information` int(11) NOT NULL AUTO_INCREMENT;
 
-##Mardi 22##
-INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+--Mardi 2
+INSERT INTO `module` (`name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
 (20, 'SiteWeb', NULL, 'Pouvoir changer les informations du site web', 'siteweb', 2);
 INSERT INTO `module_role` (`id`, `role_id`, `module`) VALUES
 (20, 1, 20);
 
-INSERT INTO `module` (`id`, `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
-(21, 'Ajouter un employe', NULL, 'permet d\\\'ajouter les employes', 'addEmploye', 1),
-(22, 'Liste employes', NULL, 'Liste des employes', 'lstEmploye', 1),
-(23, 'Ajouter gare', NULL, 'Permet d\\\'ajouter les gares', 'addGare', 1),
-(24, 'Liste gares', NULL, 'Lister l\\\'ensemble de nos gares', 'lstGare', 1),
-(25, 'Ajouter un bus', NULL, 'Permet d\\\'enregistrer les bus', 'addBus', 1),
-(26, 'Liste des bus', NULL, 'Listing des bus', 'lstBus', 1);
+INSERT INTO `module` (`name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+('Ajouter un employe', NULL, 'permet d\\\'ajouter les employes', 'addEmploye', 1),
+('Liste employes', NULL, 'Liste des employes', 'lstEmploye', 1),
+('Ajouter gare', NULL, 'Permet d\\\'ajouter les gares', 'addGare', 1),
+('Liste gares', NULL, 'Lister l\\\'ensemble de nos gares', 'lstGare', 1),
+('Ajouter un bus', NULL, 'Permet d\\\'enregistrer les bus', 'addBus', 1),
+('Liste des bus', NULL, 'Listing des bus', 'lstBus', 1);
 
-###02 Oct 2020##
+---02 Oct 2020
 ALTER TABLE `employes` CHANGE `prénom` `prenom` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+CREATE TABLE `dromadaire`.`slider` ( `img1` VARCHAR(255) NOT NULL , `img2` VARCHAR(255) NOT NULL , `img3` VARCHAR(255) NOT NULL , `img4` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+ALTER TABLE `slider` CHANGE `img4` `img4` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+ALTER TABLE `slider` ADD `id` INT NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+INSERT INTO `module` ( `name`, `icon`, `description`, `action_url`, `sub_module`) VALUES
+( 'Slider', NULL, 'géer les images défilante', 'addSliders', 2);

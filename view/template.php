@@ -44,7 +44,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-  <?php //print_r($_SESSION['user']); die;
+  <?php //print_r($_SESSION['sonef']); die;
   ?>
   <div class="wrapper">
 
@@ -74,17 +74,17 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="index.php?action=profile" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?= !empty($_SESSION['user']['photo']) ? $_SESSION['user']['photo'] : 'public/vendor/dist/img/avatar.png' ?>" class=" user-image" alt="User Image">
-                <span class="hidden-xs"><?= $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] ?></span>
+                <img src="<?= !empty($_SESSION['sonef']['photo']) ? $_SESSION['sonef']['photo'] : 'public/vendor/dist/img/avatar.png' ?>" class=" user-image" alt="User Image">
+                <span class="hidden-xs"><?= $_SESSION['sonef']['first_name'] . ' ' . $_SESSION['sonef']['last_name'] ?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="<?= !empty($_SESSION['user']['photo']) ? $_SESSION['user']['photo'] : 'public/vendor/dist/img/avatar.png' ?>" class="img-circle" alt="User Image">
+                  <img src="<?= !empty($_SESSION['sonef']['photo']) ? $_SESSION['sonef']['photo'] : 'public/vendor/dist/img/avatar.png' ?>" class="img-circle" alt="User Image">
 
                   <p>
-                    <?= $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] ?>
-                    <small><?= $_SESSION['user']['type_agent']  ?></small>
+                    <?= $_SESSION['sonef']['first_name'] . ' ' . $_SESSION['sonef']['last_name'] ?>
+                    <small><?= $_SESSION['sonef']['type_agent']  ?></small>
                   </p>
                 </li>
                 <!-- Menu Body -->
@@ -114,10 +114,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?= !empty($_SESSION['user']['photo']) ? $_SESSION['user']['photo'] : 'public/vendor/dist/img/avatar.png' ?>" class=" img-circle" alt="Photo d'utilisateur">
+            <img src="<?= !empty($_SESSION['sonef']['photo']) ? $_SESSION['sonef']['photo'] : 'public/vendor/dist/img/avatar.png' ?>" class=" img-circle" alt="Photo d'utilisateur">
           </div>
           <div class="pull-left info">
-            <p><?= $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] ?></p>
+            <p><?= $_SESSION['sonef']['first_name'] . ' ' . $_SESSION['sonef']['last_name'] ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Connecté</a>
           </div>
         </div>
@@ -136,7 +136,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">Menu</li>
           <?php
-          $res = Manager::getData('module_role', 'role_id', $_SESSION['user']['roleId'], true);
+          $res = Manager::getData('module_role', 'role_id', $_SESSION['sonef']['roleId'], true);
           $res = $res['data'];
           // print_r($res);
           $thisSMenu = array();
@@ -151,7 +151,7 @@
               //print_r($sMenu); die;
               if (is_array($sMenu) || is_object($sMenu)) {
                 foreach ($sMenu as $key => $smValue) {
-                  if (haveAction($_SESSION['user']['roleId'], $smValue['id'])) {                    
+                  if (haveAction($_SESSION['sonef']['roleId'], $smValue['id'])) {                    
                     $thisSMenu["index.php?action=" . $smValue['action_url']] = $smValue['name'];
                   }
               }

@@ -3,9 +3,9 @@
 class tarif {
 	 public $id_tarif;
 	 public $code_tarif;
-     public $valeur;
-     public $vdepart;
-     public $vdestination;
+	 public $valeur;
+	 public $vdepart;
+	 public $vdestination;
 	 public $tarif=array();
 
 
@@ -76,6 +76,7 @@ $this->setId_tarif($d['id_tarif']);
 $this->setCode_tarif($d['code_tarif']);
 $this->setValeur($d['valeur']);
 $this->setVdepart($d['vdepart']);
+$this->setVdestination($d['vdestination']);
 $this->tarif =$data; 
  return $this;
                                 }
@@ -112,7 +113,6 @@ $this->tarif =$data;
                         }
                         
                     }
-
                     /**
                     * Get the value of vdepart
                     */ 
@@ -140,7 +140,6 @@ $this->tarif =$data;
                         }
                         
                     }
-
                     /**
                     * Get the value of vdestination
                     */ 
@@ -168,6 +167,7 @@ $this->tarif =$data;
                         }
                         
                     }
+
 
                     /**
                     * Set the value of id_tarif
@@ -202,20 +202,18 @@ $this->tarif =$data;
                
                        return $this;
                    }
-
                     /**
                     * Set the value of vdepart
                     *
                     * @return  self
                     */ 
-                    public function setVdepart($vdepart)
-                    {
-                     $this->vdepart = $vdepart;
-                
-                        return $this;
-                    }
-
-                     /**
+                   public function setVdepart($vdepart)
+                   {
+                    $this->vdepart = $vdepart;
+               
+                       return $this;
+                   }
+                    /**
                     * Set the value of vdestination
                     *
                     * @return  self

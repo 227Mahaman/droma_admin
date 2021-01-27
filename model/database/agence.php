@@ -4,7 +4,9 @@ class agence {
 	 public $id_agence;
 	 public $code_agence;
 	 public $nom_agence;
+	 public $localisation;
 	 public $ville;
+	 public $file;
 	 public $agence=array();
 
 
@@ -19,12 +21,14 @@ class agence {
                     return $this->agence;
                 }
 
-                public function role($id_agence, $code_agence, $nom_agence, $ville)
+                public function role($id_agence, $code_agence, $nom_agence, $localisation, $ville, $file)
                     {
                         $this->id_agence = $id_agence;
 $this->code_agence = $code_agence;
 $this->nom_agence = $nom_agence;
+$this->localisation = $localisation;
 $this->ville = $ville;
+$this->file = $file;
 
                     }
                 
@@ -46,7 +50,9 @@ $d=$data[0];
 $this->setId_agence($d['id_agence']);
 $this->setCode_agence($d['code_agence']);
 $this->setNom_agence($d['nom_agence']);
+$this->setLocalisation($d['localisation']);
 $this->setVille($d['ville']);
+$this->setFile($d['file']);
 $this->agence =$data; 
  return $this;
                                 }
@@ -72,7 +78,9 @@ $d=$data[0];
 $this->setId_agence($d['id_agence']);
 $this->setCode_agence($d['code_agence']);
 $this->setNom_agence($d['nom_agence']);
+$this->setLocalisation($d['localisation']);
 $this->setVille($d['ville']);
+$this->setFile($d['file']);
 $this->agence =$data; 
  return $this;
                                 }
@@ -98,13 +106,43 @@ $d=$data[0];
 $this->setId_agence($d['id_agence']);
 $this->setCode_agence($d['code_agence']);
 $this->setNom_agence($d['nom_agence']);
+$this->setLocalisation($d['localisation']);
 $this->setVille($d['ville']);
+$this->setFile($d['file']);
 $this->agence =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->nom_agence;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of localisation
+                    */ 
+                    public function getLocalisation($localisation=null)
+                    {
+                        if ($localisation != null && is_array($this->agence) && count($this->agence)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE localisation = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$localisation]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_agence($d['id_agence']);
+$this->setCode_agence($d['code_agence']);
+$this->setNom_agence($d['nom_agence']);
+$this->setLocalisation($d['localisation']);
+$this->setVille($d['ville']);
+$this->setFile($d['file']);
+$this->agence =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->localisation;
                         }
                         
                     }
@@ -124,13 +162,43 @@ $d=$data[0];
 $this->setId_agence($d['id_agence']);
 $this->setCode_agence($d['code_agence']);
 $this->setNom_agence($d['nom_agence']);
+$this->setLocalisation($d['localisation']);
 $this->setVille($d['ville']);
+$this->setFile($d['file']);
 $this->agence =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->ville;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of file
+                    */ 
+                    public function getFile($file=null)
+                    {
+                        if ($file != null && is_array($this->agence) && count($this->agence)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE file = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$file]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_agence($d['id_agence']);
+$this->setCode_agence($d['code_agence']);
+$this->setNom_agence($d['nom_agence']);
+$this->setLocalisation($d['localisation']);
+$this->setVille($d['ville']);
+$this->setFile($d['file']);
+$this->agence =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->file;
                         }
                         
                     }
@@ -170,6 +238,17 @@ $this->agence =$data;
                        return $this;
                    }
                     /**
+                    * Set the value of localisation
+                    *
+                    * @return  self
+                    */ 
+                   public function setLocalisation($localisation)
+                   {
+                    $this->localisation = $localisation;
+               
+                       return $this;
+                   }
+                    /**
                     * Set the value of ville
                     *
                     * @return  self
@@ -177,6 +256,17 @@ $this->agence =$data;
                    public function setVille($ville)
                    {
                     $this->ville = $ville;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of file
+                    *
+                    * @return  self
+                    */ 
+                   public function setFile($file)
+                   {
+                    $this->file = $file;
                
                        return $this;
                    }

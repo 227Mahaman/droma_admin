@@ -8,8 +8,7 @@ class client {
 	 public $email;
 	 public $fonction;
 	 public $nationalite;
-	 public $login;
-	 public $pass;
+	 public $is_account;
 	 public $client=array();
 
 
@@ -24,7 +23,7 @@ class client {
                     return $this->client;
                 }
 
-                public function role($id_client, $nom, $prenom, $tel, $email, $fonction, $nationalite)
+                public function role($id_client, $nom, $prenom, $tel, $email, $fonction, $nationalite, $is_account)
                     {
                         $this->id_client = $id_client;
 $this->nom = $nom;
@@ -33,6 +32,7 @@ $this->tel = $tel;
 $this->email = $email;
 $this->fonction = $fonction;
 $this->nationalite = $nationalite;
+$this->is_account = $is_account;
 
                     }
                 
@@ -58,6 +58,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -87,6 +88,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -116,6 +118,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -145,6 +148,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -174,6 +178,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -203,6 +208,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -232,6 +238,7 @@ $this->setTel($d['tel']);
 $this->setEmail($d['email']);
 $this->setFonction($d['fonction']);
 $this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
 $this->client =$data; 
  return $this;
                                 }
@@ -241,6 +248,38 @@ $this->client =$data;
                         }
                         
                     }
+                    /**
+                    * Get the value of is_account
+                    */ 
+                    public function getIs_account($is_account=null)
+                    {
+                        if ($is_account != null && is_array($this->client) && count($this->client)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE is_account = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$is_account]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_client($d['id_client']);
+$this->setNom($d['nom']);
+$this->setPrenom($d['prenom']);
+$this->setTel($d['tel']);
+$this->setEmail($d['email']);
+$this->setFonction($d['fonction']);
+$this->setNationalite($d['nationalite']);
+$this->setIs_account($d['is_account']);
+$this->client =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->is_account;
+                        }
+                        
+                    }
+
+
                     /**
                     * Set the value of id_client
                     *
@@ -315,6 +354,17 @@ $this->client =$data;
                    public function setNationalite($nationalite)
                    {
                     $this->nationalite = $nationalite;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of is_account
+                    *
+                    * @return  self
+                    */ 
+                   public function setIs_account($is_account)
+                   {
+                    $this->is_account = $is_account;
                
                        return $this;
                    }

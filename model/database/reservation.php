@@ -9,6 +9,7 @@ class reservation {
 	 public $etat;
 	 public $place;
 	 public $cout;
+	 public $created_at;
 	 public $reservation=array();
 
 
@@ -23,7 +24,7 @@ class reservation {
                     return $this->reservation;
                 }
 
-                public function role($id_reservation, $client, $billet, $date, $heure, $etat, $place, $cout)
+                public function role($id_reservation, $client, $billet, $date, $heure, $etat, $place, $cout, $created_at)
                     {
                         $this->id_reservation = $id_reservation;
 $this->client = $client;
@@ -33,6 +34,7 @@ $this->heure = $heure;
 $this->etat = $etat;
 $this->place = $place;
 $this->cout = $cout;
+$this->created_at = $created_at;
 
                     }
                 
@@ -59,6 +61,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -89,6 +92,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -119,6 +123,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -149,6 +154,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -179,6 +185,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -209,6 +216,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -239,6 +247,7 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
@@ -269,12 +278,44 @@ $this->setHeure($d['heure']);
 $this->setEtat($d['etat']);
 $this->setPlace($d['place']);
 $this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
 $this->reservation =$data; 
  return $this;
                                 }
                             
                         } else {
                             return $this->cout;
+                        }
+                        
+                    }
+                    /**
+                    * Get the value of created_at
+                    */ 
+                    public function getCreated_at($created_at=null)
+                    {
+                        if ($created_at != null && is_array($this->reservation) && count($this->reservation)!=0) {
+                            $table_name = strtolower(get_class($this));
+                            $query = "SELECT * FROM $table_name WHERE created_at = ?";
+                            $req = Manager::bdd()->prepare($query);
+                            $req->execute([$created_at]);
+                            $data = "";
+                            if ($data = $req->fetchAll(PDO::FETCH_ASSOC)) {
+$d=$data[0];
+$this->setId_reservation($d['id_reservation']);
+$this->setClient($d['client']);
+$this->setBillet($d['billet']);
+$this->setDate($d['date']);
+$this->setHeure($d['heure']);
+$this->setEtat($d['etat']);
+$this->setPlace($d['place']);
+$this->setCout($d['cout']);
+$this->setCreated_at($d['created_at']);
+$this->reservation =$data; 
+ return $this;
+                                }
+                            
+                        } else {
+                            return $this->created_at;
                         }
                         
                     }
@@ -365,6 +406,17 @@ $this->reservation =$data;
                    public function setCout($cout)
                    {
                     $this->cout = $cout;
+               
+                       return $this;
+                   }
+                    /**
+                    * Set the value of created_at
+                    *
+                    * @return  self
+                    */ 
+                   public function setCreated_at($created_at)
+                   {
+                    $this->created_at = $created_at;
                
                        return $this;
                    }
