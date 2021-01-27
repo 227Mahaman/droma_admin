@@ -203,8 +203,8 @@ if (isset($_SESSION['sonef'])) {
                 $_SESSION['messages'] = $res;
             }
             require_once("view/addAvisView.php");
-        } elseif ($action == 'consulter') { // View liste des media
-            require_once("view/reservationView.php");
+        } elseif ($action == 'consulter') { // View liste des reservations
+        require_once("view/reservationView.php");
         } elseif ($action == 'abonne') { //View des mails Abonné
             require_once("view/lstAbonneView.php");
         } elseif ($action == 'siteweb') { //View Site Info
